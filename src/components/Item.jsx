@@ -1,6 +1,11 @@
+import ReactModal from 'react-modal';
+
 function Item() {
   return (
-    <li>testing Item</li>
+    <div>
+    <ReactModal parentSelector={() => document.querySelector('#item')} >testing </ReactModal>
+    <li id='item'>testing Item</li>
+    </div>
   )
 }
 

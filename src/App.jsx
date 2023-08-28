@@ -11,6 +11,11 @@ export default function App() {
     <Section sectionTitle="Routines" />
     <Section sectionTitle="Challenges" />
     <Section sectionTitle="Ideas" />
+    <Section sectionTitle="Insights" /> 
+    <Section sectionTitle="New" />
+    <Section sectionTitle="Inspiration" />
+    <Section sectionTitle="Habits" />
+    <Section sectionTitle="Projects" />
     </div>
   )
 }
