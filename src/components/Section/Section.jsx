@@ -1,20 +1,17 @@
 import { useState, useEffect } from "react";
 import Item from "../Item";
+import ItemList from "../ItemList";
 
 
-function Section( {sectionTitle} ) {
+function Section( {sectionTitle, items} ) {
 
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="m-8">
+    <div className="">
         <h2 className="inline text-quaternary-color" onClick={() => {setIsOpen(!isOpen)}}>{sectionTitle}</h2>
         {(isOpen) ? 
-            <ul className="ml-8 mt-4">
-            <Item />
-            <Item />
-            <Item />
-            </ul>
+            <ItemList items={['item1', 'item2', 'item3']} />
             : <></>
         }
         

@@ -2,20 +2,29 @@ import Section from "./components/Section/Section"
 
 export default function App() {
   return (
-    <div className="grid grid-cols-3 bg-primary-color">
-    {/* <h1 className="text-3xl font-bold italic m-8">
-      Today
-    </h1> */}
-    <Section sectionTitle="Goals & Objectives" />
+    <div className="pt-8 flex bg-primary-color">
+    <div className="ml-8 w-2/5">
+    <Section sectionTitle="Today's Action Items" />
+    </div>
+    <div className="w-2/5 mb-8">
+    
+    
     <Section sectionTitle="Tasks & Todos" />
+    <Section sectionTitle="Projects" />
     <Section sectionTitle="Routines" />
     <Section sectionTitle="Challenges" />
+    <Section sectionTitle="Objectives" />
+    <Section sectionTitle="Goals" />
+    <Section sectionTitle="Insights & Inspiration" />
     <Section sectionTitle="Ideas" />
-    <Section sectionTitle="Insights" /> 
-    <Section sectionTitle="New" />
-    <Section sectionTitle="Inspiration" />
-    <Section sectionTitle="Habits" />
-    <Section sectionTitle="Projects" />
+    <Section sectionTitle="New Items" />
+    
+    
+    
+ 
+    
+    
     </div>
-  )
+    </div>
+)
 }
