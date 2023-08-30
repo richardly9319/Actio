@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import SectionList from "../SectionList";
+import Item from "./Detail";
+import TaskList from "./TaskList";
 
-function Section( {sectionTitle, sectionItems, sectionDetails} ) {
+
+function TaskGroup( {groupTitle, tasks, taskdetails} ) {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -9,7 +11,7 @@ function Section( {sectionTitle, sectionItems, sectionDetails} ) {
     <div className="">
         <h2 className="inline text-quaternary-color" onClick={() => {setIsOpen(!isOpen)}}>{sectionTitle}</h2>
         {(isOpen) ? 
-            <SectionList sectionItems={sectionItems} sectionDetails={sectionDetails} />
+            <TaskList tasks={tasks} taskdetails={taskdetails} />
             : <></>
         }
         
@@ -17,4 +19,4 @@ function Section( {sectionTitle, sectionItems, sectionDetails} ) {
   )
 }
 
-export default Section
+export default TaskGroup

@@ -1,7 +1,7 @@
 
-function Modal( {itemName} ) {
+function Modal( {detailText} ) {
   return (
-    <h2>{itemName}</h2>
+    <h2>{detailText}</h2>
   )
 }
 
