@@ -1,23 +1,33 @@
 import Section from "./components/Section/Section"
+import axios from 'axios';
+import { useEffect } from "react";
 
 export default function App() {
+
+  const apiUrl = import.meta.env.VITE_API_URL;
+  const user_id = 2
+
+
+  useEffect(() => {
+    axios.get(`${apiUrl}/${user_id}`)
+    .then((response) => {
+      console.log(response.data);
+    });
+  }, [])
+  
+
   return (
     <div className="pt-8 flex bg-primary-color">
     <div className="ml-8 w-2/5">
-    <Section sectionTitle="Today's Action Items" />
+    <Section sectionTitle="Tasks" />
     </div>
     <div className="w-2/5 mb-8">
     
     
-    <Section sectionTitle="Tasks & Todos" />
-    <Section sectionTitle="Projects" />
-    <Section sectionTitle="Routines" />
+    <Section sectionTitle="Goals & Objectives" />
     <Section sectionTitle="Challenges" />
-    <Section sectionTitle="Objectives" />
-    <Section sectionTitle="Goals" />
-    <Section sectionTitle="Insights & Inspiration" />
-    <Section sectionTitle="Ideas" />
-    <Section sectionTitle="New Items" />
+    <Section sectionTitle="Inspiration" />
+    <Section sectionTitle="Insights & Ideas" />
     
     
     
