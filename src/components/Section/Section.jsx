@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import SectionList from "../SectionList";
+import ItemList from "../ItemList";
 
 function Section( {sectionTitle, sectionItems, sectionDetails} ) {
 
@@ -9,7 +9,7 @@ function Section( {sectionTitle, sectionItems, sectionDetails} ) {
     <div className="">
         <h2 className="inline text-quaternary-color" onClick={() => {setIsOpen(!isOpen)}}>{sectionTitle}</h2>
         {(isOpen) ? 
-            <SectionList sectionItems={sectionItems} sectionDetails={sectionDetails} />
+            <ItemList sectionItems={sectionItems} sectionDetails={sectionDetails} />
             : <></>
         }
         

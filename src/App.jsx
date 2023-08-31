@@ -25,7 +25,9 @@ export default function App() {
   
 
   return (
-    <div className="pt-8 flex bg-primary-color">
+    <div className="pt-8 flex bg-primary-color" onContextMenu={(e) => {
+      e.preventDefault();
+    }}>
     <div className="ml-8 w-2/5">
       
     <TaskSection sectionTitle="Tasks" taskgroups={userData.taskgroups} tasks={userData.tasks} taskdetails={userData.taskdetails} />

@@ -1,21 +1,29 @@
 import { useState, useEffect } from "react";
-import Item from "./Detail";
+import Detail from "./Detail";
 import TaskList from "./TaskList";
+import Task from "./Task";
 
 
-function TaskGroup( {groupTitle, tasks, taskdetails} ) {
+function TaskGroup( {groupName, tasks, taskdetails} ) {
 
     const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="">
-        <h2 className="inline text-quaternary-color" onClick={() => {setIsOpen(!isOpen)}}>{sectionTitle}</h2>
-        {(isOpen) ? 
-            <TaskList tasks={tasks} taskdetails={taskdetails} />
-            : <></>
-        }
+    <div>
+      <h2 className="text-tertiary-color" onClick={() => {setIsOpen(!isOpen)}}>{groupName}</h2>
+      
         
-        </div>
+        {(isOpen) ? 
+        <ul className="ml-4">
+        {tasks?.map((task, index) => {
+            return <Task taskId={task.id} taskName={task.task_name} key={index} taskdetails={taskdetails}/>
+        })}
+        </ul>
+        
+         : <></>
+      }
+        
+    </div>
   )
 }
 
