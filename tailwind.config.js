@@ -12,6 +12,8 @@ export default {
         "tertiary-color": "#9999A1",
         "quaternary-color": "#66666E",
         "quinary-color": "#000000",
+        "color-teal": "#335C67"
+        
 
       }
     },
