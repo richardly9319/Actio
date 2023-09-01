@@ -28,17 +28,16 @@ export default function App() {
     <div className="pt-8 flex bg-primary-color" onContextMenu={(e) => {
       e.preventDefault();
     }}>
-    <div className="ml-8 w-2/5">
+    <div className="ml-8 w-3/10">
       
-    <TaskSection sectionTitle="Tasks" taskgroups={userData.taskgroups} tasks={userData.tasks} taskdetails={userData.taskdetails} />
+    <TaskSection sectionTitle="Action Items" />
     </div>
-    <div className="w-2/5 mb-8">
-    
-    
+    <div className="w-3/10 mb-8 ml-4">
+
     <Section sectionTitle="Goals & Objectives" sectionItems={userData.goals} sectionDetails={userData.goaldetails} />
-    <Section sectionTitle="Challenges" />
-    <Section sectionTitle="Inspiration" />
-    <Section sectionTitle="Insights & Ideas" />
+    <Section sectionTitle="Challenges" sectionItems={userData.challenges} sectionDetails={userData.challengedetails} />
+    <Section sectionTitle="Inspiration" sectionItems={userData.inspiration} sectionDetails={userData.inspirationdetails} />
+    <Section sectionTitle="Insights & Ideas" sectionItems={userData.insightsIdeas} sectionDetails={userData.insightIdeasdetails}/>
     
     
     

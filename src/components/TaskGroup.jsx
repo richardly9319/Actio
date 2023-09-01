@@ -4,19 +4,21 @@ import TaskList from "./TaskList";
 import Task from "./Task";
 
 
-function TaskGroup( {groupName, tasks, taskdetails} ) {
+function TaskGroup( {handleTaskDelete, groupName, tasks, taskdetails} ) {
 
     const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
-      <h2 className="text-tertiary-color" onClick={() => {setIsOpen(!isOpen)}}>{groupName}</h2>
+      <h2 className="text-orange-700" onClick={() => {setIsOpen(!isOpen)}}>{groupName}</h2>
       
-        
+  
         {(isOpen) ? 
         <ul className="ml-4">
         {tasks?.map((task, index) => {
-            return <Task taskId={task.id} taskName={task.task_name} key={index} taskdetails={taskdetails}/>
+            return <Task handleTaskDelete={handleTaskDelete} task={task} key={index} taskdetails={taskdetails?.filter((detail) => {
+              return detail.task_id == task.id
+            })}/>
         })}
         </ul>
         

@@ -7,7 +7,7 @@ function Section( {sectionTitle, sectionItems, sectionDetails} ) {
 
   return (
     <div className="">
-        <h2 className="inline text-quaternary-color" onClick={() => {setIsOpen(!isOpen)}}>{sectionTitle}</h2>
+        <h2 className="inline text-blue-700" onClick={() => {setIsOpen(!isOpen)}}>{sectionTitle}</h2>
         {(isOpen) ? 
             <ItemList sectionItems={sectionItems} sectionDetails={sectionDetails} />
             : <></>

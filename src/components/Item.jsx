@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 import Modal from './Modal';
 import DetailList from './DetailList';
-import RightClickMenu from './RightClickMenu';
 
 import arrowIcon from '../assets/arrowIcon.png';
 
@@ -28,14 +27,14 @@ function Item( {itemId, itemName, itemDetails} ) {
     <ReactModal appElement={document.getElementById('root')} isOpen={isModalOpen}
       onRequestClose={closeModal}>
         <Modal itemName={itemName} /> </ReactModal>
-    <li className="flex" onContextMenu={(e) => {
+    <li className="flex text-green-700" onContextMenu={(e) => {
         e.preventDefault();
         openModal();
       }} onClick={() => {setIsOpen(!isOpen)}}>
        {itemName} 
       </li>
       {(isOpen) ? 
-           <DetailList details={itemDetails.filter((detail) => {
+           <DetailList details={itemDetails?.filter((detail) => {
             
             return detail.section_id == itemId
            })} />
