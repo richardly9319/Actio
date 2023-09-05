@@ -2,13 +2,14 @@ import ReactModal from 'react-modal';
 import { useState } from 'react';
 
 
+
 function Detail( {detailText} ) {
 
 
  
   return (
     <div>
-    <li className="inline-block" >{detailText}</li>
+    <li className="inline-block ml-1 text-sm" >- {detailText}</li>
     </div>
   )
 }

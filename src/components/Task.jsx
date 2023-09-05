@@ -4,10 +4,17 @@ import { useState } from 'react';
 import Modal from './Modal';
 import DetailList from './DetailList';
 
+import axios from 'axios';
+
+import { motion, AnimatePresence } from "framer-motion"
+
 function Task( {handleTaskDelete, task, taskdetails} ) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+  const apiUrl = import.meta.env.VITE_API_URL;
+  const user_id = 2
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -19,13 +26,31 @@ function Task( {handleTaskDelete, task, taskdetails} ) {
 
   return (
     <div>
+      
     <ReactModal appElement={document.getElementById('root')} isOpen={isModalOpen}
       onRequestClose={closeModal}>
-        <Modal handleTaskDelete={handleTaskDelete} task={task} taskdetails={taskdetails} closeModal={closeModal} /> </ReactModal>
-    <li className="inline-block text-purple-600" onContextMenu={(e) => {
+        <motion.div
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      >
+        <Modal handleTaskDelete={handleTaskDelete} task={task} taskdetails={taskdetails} closeModal={closeModal} /> 
+        </motion.div>
+        </ReactModal>
+        
+    <li className="flex text-black" onContextMenu={(e) => {
         e.preventDefault();
         openModal();
-      }} onClick={() => {setIsOpen(!isOpen)}} >{task.task_name}
+      }} onClick={() => {setIsOpen(!isOpen)}} ><div 
+      onClick={
+        (e) => {e.stopPropagation();
+
+        handleTaskDelete(task.id);
+        alert('Task Completed!')
+      
+      }} 
+        className='mr-1'>〇 </div> {task.task_name}
       </li>
     
     {(isOpen) ? 

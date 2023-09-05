@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Modal from './Modal';
 import DetailList from './DetailList';
 
-import arrowIcon from '../assets/arrowIcon.png';
 
 function Item( {itemId, itemName, itemDetails} ) {
 
@@ -27,9 +26,9 @@ function Item( {itemId, itemName, itemDetails} ) {
     <ReactModal appElement={document.getElementById('root')} isOpen={isModalOpen}
       onRequestClose={closeModal}>
         <Modal itemName={itemName} /> </ReactModal>
-    <li className="flex text-green-700" onContextMenu={(e) => {
+    <li className="font-semibold flex text-gray-700" onContextMenu={(e) => {
         e.preventDefault();
-        openModal();
+        // openModal();
       }} onClick={() => {setIsOpen(!isOpen)}}>
        {itemName} 
       </li>
