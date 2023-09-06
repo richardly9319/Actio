@@ -8,7 +8,7 @@ import axios from 'axios';
 
 import { motion, AnimatePresence } from "framer-motion"
 
-function Task( {handleTaskDelete, task, taskdetails} ) {
+function Task( {taskCompleteNotify, handleTaskDelete, task, taskdetails} ) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
@@ -48,7 +48,7 @@ function Task( {handleTaskDelete, task, taskdetails} ) {
         (e) => {e.stopPropagation();
 
         handleTaskDelete(task.id);
-        alert('Task Completed!')
+        taskCompleteNotify();
       
       }} 
         className='mr-1 hover:text-green-600'>〇 </div> {task.task_name}
