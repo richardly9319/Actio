@@ -6,6 +6,7 @@ import ContextMenu from "./components/ContextMenu";
 import book from "./assets/book7.jpg"
 import menuIcon from "./assets/menuIcon.svg"
 import SideBar from "./components/SideBar";
+import { motion } from "framer-motion";
 
 export default function App() { 
 
@@ -42,7 +43,10 @@ export default function App() {
       e.preventDefault();
     }}>
 
-    <img className="fixed right-5 top-5 w-6" src={menuIcon} alt="side menu" onClick={toggleSidebar}/>
+    <motion.img id="SideBar" 
+    initial={{ scale: 1 }} 
+    whileHover={{ scale: 1.1 }}
+    className="fixed right-5 top-5 w-6" src={menuIcon} alt="side menu" onClick={toggleSidebar}/>
 
     { sidebarOpen && (
 
@@ -61,7 +65,7 @@ export default function App() {
     
     
     </div>
-    <img className="opacity-70 fixed bottom-5 left-1/2 translate-x-[-50%] -z-2 w-36" src={book} alt="book" />
+    <img id="BookImage" className="opacity-70 fixed bottom-5 left-1/2 translate-x-[-50%] -z-2 w-36" src={book} alt="book" />
     </div>
 )
 }
