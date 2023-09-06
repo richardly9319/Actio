@@ -11,7 +11,7 @@ import { motion, AnimatePresence } from "framer-motion"
 function Task( {handleTaskDelete, task, taskdetails} ) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const apiUrl = import.meta.env.VITE_API_URL;
   const user_id = 2
@@ -39,10 +39,11 @@ function Task( {handleTaskDelete, task, taskdetails} ) {
         </motion.div>
         </ReactModal>
         
-    <li className="flex text-black" onContextMenu={(e) => {
+    <li className="flex text-black leading-relaxed" onContextMenu={(e) => {
         e.preventDefault();
         openModal();
-      }} onClick={() => {setIsOpen(!isOpen)}} ><div 
+      }} onClick={() => {setIsOpen(!isOpen)}} >
+        <div 
       onClick={
         (e) => {e.stopPropagation();
 
@@ -50,7 +51,7 @@ function Task( {handleTaskDelete, task, taskdetails} ) {
         alert('Task Completed!')
       
       }} 
-        className='mr-1'>〇 </div> {task.task_name}
+        className='mr-1 hover:text-green-600'>〇 </div> {task.task_name}
       </li>
     
     {(isOpen) ? 

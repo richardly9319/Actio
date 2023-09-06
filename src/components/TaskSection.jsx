@@ -24,8 +24,8 @@ function TaskSection( {sectionTitle} ) {
       setInputPopup({ isVisible: true, label });
     };
 
-    const showGroupInputField = (label) => {
-      setGroupInputPopup({ isVisible: true, label });
+    const showGroupInputField = (label, groupId) => {
+      setGroupInputPopup({ isVisible: true, label, groupId });
     };
 
     const handleTaskDelete = (taskId) => {
@@ -82,9 +82,9 @@ function TaskSection( {sectionTitle} ) {
     ];
 
     const contextMenuItems_TaskGroup = [
-      { label: "Rename Group", action: "rename_group" },
-      { label: "Delete Group", action: "delete_group" },
       { label: "Create New Task", action: "new_task" },
+      { label: "Delete Group", action: "delete_group" },
+      
 
     ];
 
@@ -123,7 +123,7 @@ function TaskSection( {sectionTitle} ) {
               <button onClick={() => {
                 const value = inputRef.current.value;
                 if (inputPopup.label == "Task") {
-                  console.log('task fired');
+                  // console.log('task fired');
                 axios.post(`${apiUrl}/${user_id}/tasks`, {"task": {"task_name": value, "user_id": user_id}})
                 .then((response) => {
                   setTasksData(prevData => ({
@@ -133,7 +133,7 @@ function TaskSection( {sectionTitle} ) {
                 }).catch((err) => {
                   console.log(err);
                 } )} else if (inputPopup.label == "Group") {
-                  console.log("group fired");
+                  // console.log("group fired");
                   axios.post(`${apiUrl}/${user_id}/taskgroups`, {"taskGroup": {"taskgroup_name": value, "user_id": user_id}})
                 .then((response) => {
                   setTasksData(prevData => ({
@@ -160,7 +160,7 @@ function TaskSection( {sectionTitle} ) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
             >
-            <TaskList groupInputPopup={groupInputPopup} handleTaskGroupDelete={handleTaskGroupDelete} showGroupInputField={showGroupInputField} contextMenuItems_TaskGroup={contextMenuItems_TaskGroup} handleTaskDelete={handleTaskDelete} taskgroups={tasksData.taskgroups} tasks={tasksData.tasks} taskdetails={tasksData.tasksdetails} />
+            <TaskList setGroupInputPopup={setGroupInputPopup} setTasksData={setTasksData} groupInputPopup={groupInputPopup} handleTaskGroupDelete={handleTaskGroupDelete} showGroupInputField={showGroupInputField} contextMenuItems_TaskGroup={contextMenuItems_TaskGroup} handleTaskDelete={handleTaskDelete} taskgroups={tasksData.taskgroups} tasks={tasksData.tasks} taskdetails={tasksData.tasksdetails} />
             </motion.div>
             : null
         }

@@ -4,11 +4,18 @@ import TaskList from "./TaskList";
 import Task from "./Task";
 import ContextMenuContainer from "./ContextMenuContainer"
 import { motion, AnimatePresence } from "framer-motion";
+import { useRef } from 'react';
+import axios from "axios";
 
 
-function TaskGroup( {groupInputPopup, groupID, handleTaskGroupDelete, showGroupInputField, handleTaskDelete, groupName, tasks, taskdetails, contextMenuItems_TaskGroup} ) {
+function TaskGroup( {setGroupInputPopup, setTasksData, groupInputPopup, groupID, handleTaskGroupDelete, showGroupInputField, handleTaskDelete, groupName, tasks, taskdetails, contextMenuItems_TaskGroup} ) {
 
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const inputRef = useRef();
+
+    const apiUrl = import.meta.env.VITE_API_URL;
+    const user_id = 2;
 
   return (
     <div>
@@ -21,16 +28,30 @@ function TaskGroup( {groupInputPopup, groupID, handleTaskGroupDelete, showGroupI
       >{groupName}:</motion.h2>
       </ContextMenuContainer>
         
-        {groupInputPopup.isVisible && (
+        {groupInputPopup.isVisible && groupID === groupInputPopup.groupId && (
           <div>
           <input
-            // ref={inputRef}
+            ref={inputRef}
             type="text"
             placeholder={`Enter ${groupInputPopup.label} Name`}
           />
           <button onClick={() => {
-            // handle submit logic here
             const value = inputRef.current.value;
+            console.log("value", value);
+            if (groupInputPopup.label == "New Task") {
+      
+            axios.post(`${apiUrl}/${user_id}/tasks`, {"task": {"task_name": value, "user_id": user_id, "taskgroup_id": groupID}})
+            .then((response) => {
+              console.log("responded");
+              setTasksData(prevData => ({
+                ...prevData,
+                tasks: [...prevData.tasks, response.data.task]
+              }));
+            }).catch((err) => {
+              console.log(err);
+            } )}
+
+            setGroupInputPopup({ isVisible: false, label: '' });
           }}>Submit</button>
           </div>
         )}

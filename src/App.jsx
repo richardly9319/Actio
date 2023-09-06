@@ -5,6 +5,7 @@ import TaskSection from "./components/TaskSection";
 import ContextMenu from "./components/ContextMenu";
 import book from "./assets/book7.jpg"
 import menuIcon from "./assets/menuIcon.svg"
+import SideBar from "./components/SideBar";
 
 export default function App() { 
 
@@ -13,6 +14,12 @@ export default function App() {
 
 
   const [userData, setUserData] = useState([]);
+
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
 
 
   useEffect(() => {
@@ -25,6 +32,9 @@ export default function App() {
       console.error('Error fetching user data:', error);
     });
   }, [])
+
+
+  
   
 
   return (
@@ -32,7 +42,12 @@ export default function App() {
       e.preventDefault();
     }}>
 
-    <img className="absolute left-4 top-4 w-6" src={menuIcon} alt="menu" />
+    <img className="fixed right-5 top-5 w-6" src={menuIcon} alt="side menu" onClick={toggleSidebar}/>
+
+    { sidebarOpen && (
+
+        <SideBar toggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen}/>
+      )}
 
     <div className="ml-24 w-1/2">
     <TaskSection sectionTitle="Action Items" />
@@ -46,8 +61,7 @@ export default function App() {
     
     
     </div>
-    <img className="opacity-80 absolute bottom-5 left-1/2 translate-x-[-50%] -z-1 w-36" src={book} alt="book" />
-    <button className="absolute bottom-4 right-4 font-semibold text-gray-700 hover:font-bold">Logout</button>
+    <img className="opacity-70 fixed bottom-5 left-1/2 translate-x-[-50%] -z-2 w-36" src={book} alt="book" />
     </div>
 )
 }

@@ -34,7 +34,7 @@ const ContextMenuContainer = ({ groupID, children, items, showInputField, showGr
       } else if (action === 'delete_group') {
         handleTaskGroupDelete(groupID);
       } else if (action === 'new_task') {
-        showGroupInputField('New Task');
+        showGroupInputField('New Task', groupID);
       }
   };
 
