@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 function TaskGroup( {groupInputPopup, groupID, handleTaskGroupDelete, showGroupInputField, handleTaskDelete, groupName, tasks, taskdetails, contextMenuItems_TaskGroup} ) {
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
 
   return (
     <div>

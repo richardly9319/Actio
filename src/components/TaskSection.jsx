@@ -89,7 +89,15 @@ function TaskSection( {sectionTitle} ) {
     ];
 
   return (
-    <div className="">
+    <motion.div 
+    className="rounded-lg pl-3 pt-2 pb-2"
+    animate={
+      isOpen ? {
+        backgroundImage: "linear-gradient(to right, rgba(211, 211, 211, 0.2), white)"}
+    : {  backgroundImage: ""}
+    }
+    transition={{ duration: 1 }}
+    >
       <ContextMenuContainer items={contextMenuItems} showInputField={showInputField}>
         <motion.h2 className="text-lg font-semibold text-primary-navy" 
         onClick={() => {setIsOpen(!isOpen)}}
@@ -158,7 +166,7 @@ function TaskSection( {sectionTitle} ) {
         }
         </AnimatePresence>
         
-        </div>
+        </motion.div>
   )
 }
 

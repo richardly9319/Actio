@@ -6,7 +6,7 @@ import ContextMenuContainer from "../ContextMenuContainer";
 
 function Section( {sectionTitle, sectionItems, sectionDetails} ) {
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
 
     const [inputPopup, setInputPopup] = useState({ isVisible: false, label: '' });
 
