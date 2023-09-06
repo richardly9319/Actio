@@ -5,7 +5,7 @@ import ContextMenuContainer from "./ContextMenuContainer"
 import { useRef } from 'react';
 import { motion, AnimatePresence } from "framer-motion"
 
-function TaskSection( {sectionTitle} ) {
+function TaskSection( {taskCompleteNotify, sectionTitle} ) {
 
     const apiUrl = import.meta.env.VITE_API_URL;
     const user_id = 2;
@@ -90,7 +90,7 @@ function TaskSection( {sectionTitle} ) {
 
   return (
     <motion.div 
-    className="rounded-lg pl-3 pt-2 pb-2"
+    className="rounded-lg pl-3 pt-2 pb-2 mt-2"
     animate={
       isOpen ? {
         backgroundImage: "linear-gradient(to right, rgba(211, 211, 211, 0.2), white)"}
@@ -160,7 +160,7 @@ function TaskSection( {sectionTitle} ) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
             >
-            <TaskList setGroupInputPopup={setGroupInputPopup} setTasksData={setTasksData} groupInputPopup={groupInputPopup} handleTaskGroupDelete={handleTaskGroupDelete} showGroupInputField={showGroupInputField} contextMenuItems_TaskGroup={contextMenuItems_TaskGroup} handleTaskDelete={handleTaskDelete} taskgroups={tasksData.taskgroups} tasks={tasksData.tasks} taskdetails={tasksData.tasksdetails} />
+            <TaskList taskCompleteNotify={taskCompleteNotify} setGroupInputPopup={setGroupInputPopup} setTasksData={setTasksData} groupInputPopup={groupInputPopup} handleTaskGroupDelete={handleTaskGroupDelete} showGroupInputField={showGroupInputField} contextMenuItems_TaskGroup={contextMenuItems_TaskGroup} handleTaskDelete={handleTaskDelete} taskgroups={tasksData.taskgroups} tasks={tasksData.tasks} taskdetails={tasksData.tasksdetails} />
             </motion.div>
             : null
         }

@@ -25,10 +25,26 @@ function Section( {userData, setUserData, sectionTitle, sectionItems, sectionDet
     const apiUrl = import.meta.env.VITE_API_URL;
     const user_id = 2;
 
+    const handleItemDelete = (itemId) => {
+      axios
+        .delete(`${apiUrl}/${user_id}/${sectionType}/${itemId}`)
+        .then((response) => {
+          console.log("response: ", response);
+          setUserData(prevData => ({
+            ...prevData,
+            [sectionType]: [...prevData[sectionType].filter(item => item.id !== itemId)]
+          }));
+        })
+        
+        .catch((error) => {
+          console.error("Error deleting Item:", error);
+        });
+    };
+
     
 
   return (
-    <div className="">
+    <div className="mt-2">
         <ContextMenuContainer items={contextMenuItems} showInputField={showInputField}>
         <motion.h2 
         className="text-lg font-semibold text-green-800" 
@@ -82,7 +98,7 @@ function Section( {userData, setUserData, sectionTitle, sectionItems, sectionDet
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
             >
-            <ItemList sectionItems={sectionItems} sectionDetails={sectionDetails} />
+            <ItemList handleItemDelete={handleItemDelete} setUserData={setUserData} sectionType={sectionType} sectionItems={sectionItems} sectionDetails={sectionDetails} />
             </motion.div>
             : null
         }

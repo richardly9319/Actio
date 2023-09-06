@@ -8,7 +8,7 @@ import { useRef } from 'react';
 import axios from "axios";
 
 
-function TaskGroup( {setGroupInputPopup, setTasksData, groupInputPopup, groupID, handleTaskGroupDelete, showGroupInputField, handleTaskDelete, groupName, tasks, taskdetails, contextMenuItems_TaskGroup} ) {
+function TaskGroup( {taskCompleteNotify, setGroupInputPopup, setTasksData, groupInputPopup, groupID, handleTaskGroupDelete, showGroupInputField, handleTaskDelete, groupName, tasks, taskdetails, contextMenuItems_TaskGroup} ) {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -21,7 +21,7 @@ function TaskGroup( {setGroupInputPopup, setTasksData, groupInputPopup, groupID,
     <div>
       <ContextMenuContainer groupID={groupID} handleTaskGroupDelete={handleTaskGroupDelete} items={contextMenuItems_TaskGroup} showGroupInputField={showGroupInputField}>
       <motion.h2 
-      className="text-orange-700 font-semibold" 
+      className="text-orange-700 font-semibold mt-1" 
       onClick={() => {setIsOpen(!isOpen)}}
       initial={{ scale: 1 }} 
       whileHover={{ scale: 1.02 }}
@@ -67,7 +67,7 @@ function TaskGroup( {setGroupInputPopup, setTasksData, groupInputPopup, groupID,
         >
         <ul className="ml-4">
         {tasks?.map((task, index) => {
-            return <Task handleTaskDelete={handleTaskDelete} task={task} key={index} taskdetails={taskdetails?.filter((detail) => {
+            return <Task taskCompleteNotify={taskCompleteNotify} handleTaskDelete={handleTaskDelete} task={task} key={index} taskdetails={taskdetails?.filter((detail) => {
               return detail.task_id == task.id
             })}/>
         })}
