@@ -65,8 +65,9 @@ function TaskSection( {userID, taskCompleteNotify, sectionTitle} ) {
     };
 
     const handleTaskDetailAdd = (taskId, newTaskDetail) => {
+
       axios
-          .post(`${apiUrl}/${user_id}/tasks/${taskId}`, { taskDetail: newTaskDetail, taskId })
+          .post(`${apiUrl}/${user_id}/tasks/${taskId}`, { taskDetail: newTaskDetail, taskId, userID })
           .then((response) => {
               setTasksData((prevData) => ({
                   ...prevData,
