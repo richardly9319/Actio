@@ -11,7 +11,7 @@ import { motion, AnimatePresence } from "framer-motion"
 function Task( {handleTaskDelete, task, taskdetails} ) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const apiUrl = import.meta.env.VITE_API_URL;
   const user_id = 2

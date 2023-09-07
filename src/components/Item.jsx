@@ -10,7 +10,7 @@ function Item( {itemId, itemName, itemDetails} ) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
