@@ -38,24 +38,24 @@ export default function App() {
     const storedUserID = localStorage.getItem('userID');
 
     if (!storedUserID) {
-      const userInputID = prompt("Please enter your unique user ID:");
-      localStorage.setItem('userID', userInputID); 
-
-      if (userInputID && userInputID.length > 2) {
-        setUserID(prevState => {
-          fetchData(userInputID);  // Fetch data inside the callback
-          return userInputID;
-        });
-      } else {
-        console.error('Valid User ID is required.');
-      }
+        const userInputID = prompt("Please enter your unique user ID:");
+        if (userInputID && userInputID.length > 2) {
+            localStorage.setItem('userID', userInputID);
+            setUserID(userInputID); // Set userID state
+        } else {
+            console.error('Valid User ID is required.');
+        }
     } else {
-      setUserID(prevState => {
-        fetchData(storedUserID);  // Fetch data inside the callback
-        return storedUserID;
-      });
+        setUserID(storedUserID); // Set userID state
     }
-  }, []);
+}, []);
+
+useEffect(() => {
+    if (userID) {
+        fetchData(userID); // Fetch data whenever userID changes
+    }
+}, [userID]);
+
 
   return (
     <div className="md:pt-8 flex flex-col md:flex-row min-h-screen" onContextMenu={(e) => {
