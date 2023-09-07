@@ -39,7 +39,7 @@ export default function App() {
 
     if (!storedUserID) {
         const userInputID = prompt("Please enter your unique user ID:");
-        if (userInputID && userInputID.length > 2) {
+        if (userInputID && userInputID.trim().length > 0) {
             localStorage.setItem('userID', userInputID);
             setUserID(userInputID); // Set userID state
         } else {
