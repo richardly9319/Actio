@@ -8,10 +8,15 @@ import menuIcon from "./assets/menuIcon.svg"
 import SideBar from "./components/SideBar";
 import { motion } from "framer-motion";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function App() { 
 
   const apiUrl = import.meta.env.VITE_API_URL;
   const user_id = 2
+
+  const taskCompleteNotify = () => toast.success("Task Complete!");
 
 
   const [userData, setUserData] = useState([]);
@@ -39,14 +44,28 @@ export default function App() {
   
 
   return (
-    <div className="pt-8 w-full flex min-h-screen" onContextMenu={(e) => {
+    <div className="pt-8 w-full flex min-h-screen " onContextMenu={(e) => {
       e.preventDefault();
     }}>
+
+      
+      <ToastContainer
+        position="top-center"
+        autoClose={500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        />
 
     <motion.img id="SideBar" 
     initial={{ scale: 1 }} 
     whileHover={{ scale: 1.1 }}
-    className="fixed right-5 top-5 w-6" src={menuIcon} alt="side menu" onClick={toggleSidebar}/>
+    className="fixed right-5 top-5 w-7" src={menuIcon} alt="side menu" onClick={toggleSidebar}/>
 
     { sidebarOpen && (
 
@@ -54,7 +73,7 @@ export default function App() {
       )}
 
     <div className="ml-24 w-1/2">
-    <TaskSection sectionTitle="Action Items" />
+    <TaskSection taskCompleteNotify={taskCompleteNotify} sectionTitle="Action Items" />
     </div>
 
     <div className="w-1/2 mb-8 ml-2 mr-8 pl-3 pt-2 pb-2">
