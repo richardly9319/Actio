@@ -44,7 +44,7 @@ export default function App() {
   
 
   return (
-    <div className="pt-8 w-full flex min-h-screen" onContextMenu={(e) => {
+    <div className="pt-8 w-full flex min-h-screen " onContextMenu={(e) => {
       e.preventDefault();
     }}>
 
