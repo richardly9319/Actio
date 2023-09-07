@@ -8,13 +8,13 @@ import axios from 'axios';
 
 import { motion, AnimatePresence } from "framer-motion"
 
-function Task( {taskCompleteNotify, handleTaskDelete, task, taskdetails} ) {
+function Task( {userID, handleTaskDetailAdd, taskCompleteNotify, handleTaskDelete, task, taskdetails} ) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const apiUrl = import.meta.env.VITE_API_URL;
-  const user_id = 2
+  const user_id = userID;
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -35,11 +35,11 @@ function Task( {taskCompleteNotify, handleTaskDelete, task, taskdetails} ) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
       >
-        <Modal handleTaskDelete={handleTaskDelete} task={task} taskdetails={taskdetails} closeModal={closeModal} /> 
+        <Modal setIsOpen={setIsOpen} handleTaskDetailAdd={handleTaskDetailAdd} handleTaskDelete={handleTaskDelete} task={task} taskdetails={taskdetails} closeModal={closeModal} /> 
         </motion.div>
         </ReactModal>
         
-    <li className="flex text-black leading-relaxed" onContextMenu={(e) => {
+    <li className="flex text-black mt-1 md:mt-0 text-lg md:text-base md:leading-relaxed" onContextMenu={(e) => {
         e.preventDefault();
         openModal();
       }} onClick={() => {setIsOpen(!isOpen)}} >

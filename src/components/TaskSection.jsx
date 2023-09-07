@@ -5,10 +5,10 @@ import ContextMenuContainer from "./ContextMenuContainer"
 import { useRef } from 'react';
 import { motion, AnimatePresence } from "framer-motion"
 
-function TaskSection( {taskCompleteNotify, sectionTitle} ) {
+function TaskSection( {userID, taskCompleteNotify, sectionTitle} ) {
 
     const apiUrl = import.meta.env.VITE_API_URL;
-    const user_id = 2;
+    const user_id = userID;
 
     const inputRef = useRef();
 
@@ -64,7 +64,23 @@ function TaskSection( {taskCompleteNotify, sectionTitle} ) {
         });
     };
 
+    const handleTaskDetailAdd = (taskId, newTaskDetail) => {
+      axios
+          .post(`${apiUrl}/${user_id}/tasks/${taskId}`, { taskDetail: newTaskDetail, taskId })
+          .then((response) => {
+              setTasksData((prevData) => ({
+                  ...prevData,
+                  tasksdetails: [...prevData.tasksdetails, response.data.taskDetail]
+              }));
+          })
+          .catch((error) => {
+              console.error("Error adding Task Detail:", error);
+          });
+  };
+  
+
     useEffect(() => {
+      console.log("Fetching data for user:", user_id)
       axios.get(`${apiUrl}/${user_id}/tasks`)
       .then((response) => {
         console.log("tasksData: ", response.data)
@@ -90,7 +106,7 @@ function TaskSection( {taskCompleteNotify, sectionTitle} ) {
 
   return (
     <motion.div 
-    className="rounded-lg pl-3 pt-2 pb-2 mt-2"
+    className="rounded-lg pl-5 md:pl-3 pt-4 md:pt-2 pb-2 md:mt-2"
     animate={
       isOpen ? {
         backgroundImage: "linear-gradient(to right, rgba(211, 211, 211, 0.2), white)"}
@@ -98,8 +114,8 @@ function TaskSection( {taskCompleteNotify, sectionTitle} ) {
     }
     transition={{ duration: 1 }}
     >
-      <ContextMenuContainer items={contextMenuItems} showInputField={showInputField}>
-        <motion.h2 className="text-lg font-semibold text-primary-navy" 
+      <ContextMenuContainer userID={userID} items={contextMenuItems} showInputField={showInputField}>
+        <motion.h2 className="text-2xl md:text-lg font-semibold text-primary-navy" 
         onClick={() => {setIsOpen(!isOpen)}}
         initial={{ scale: 1 }} 
         whileHover={{ scale: 1.05 }}
@@ -123,7 +139,7 @@ function TaskSection( {taskCompleteNotify, sectionTitle} ) {
               <button onClick={() => {
                 const value = inputRef.current.value;
                 if (inputPopup.label == "Task") {
-                  // console.log('task fired');
+                  console.log('user_id:', user_id);
                 axios.post(`${apiUrl}/${user_id}/tasks`, {"task": {"task_name": value, "user_id": user_id}})
                 .then((response) => {
                   setTasksData(prevData => ({
@@ -160,7 +176,7 @@ function TaskSection( {taskCompleteNotify, sectionTitle} ) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
             >
-            <TaskList taskCompleteNotify={taskCompleteNotify} setGroupInputPopup={setGroupInputPopup} setTasksData={setTasksData} groupInputPopup={groupInputPopup} handleTaskGroupDelete={handleTaskGroupDelete} showGroupInputField={showGroupInputField} contextMenuItems_TaskGroup={contextMenuItems_TaskGroup} handleTaskDelete={handleTaskDelete} taskgroups={tasksData.taskgroups} tasks={tasksData.tasks} taskdetails={tasksData.tasksdetails} />
+            <TaskList userID={userID} handleTaskDetailAdd={handleTaskDetailAdd} taskCompleteNotify={taskCompleteNotify} setGroupInputPopup={setGroupInputPopup} setTasksData={setTasksData} groupInputPopup={groupInputPopup} handleTaskGroupDelete={handleTaskGroupDelete} showGroupInputField={showGroupInputField} contextMenuItems_TaskGroup={contextMenuItems_TaskGroup} handleTaskDelete={handleTaskDelete} taskgroups={tasksData.taskgroups} tasks={tasksData.tasks} taskdetails={tasksData.tasksdetails} />
             </motion.div>
             : null
         }

@@ -8,20 +8,20 @@ import { useRef } from 'react';
 import axios from "axios";
 
 
-function TaskGroup( {taskCompleteNotify, setGroupInputPopup, setTasksData, groupInputPopup, groupID, handleTaskGroupDelete, showGroupInputField, handleTaskDelete, groupName, tasks, taskdetails, contextMenuItems_TaskGroup} ) {
+function TaskGroup( {userID, handleTaskDetailAdd, taskCompleteNotify, setGroupInputPopup, setTasksData, groupInputPopup, groupID, handleTaskGroupDelete, showGroupInputField, handleTaskDelete, groupName, tasks, taskdetails, contextMenuItems_TaskGroup} ) {
 
     const [isOpen, setIsOpen] = useState(false);
 
     const inputRef = useRef();
 
     const apiUrl = import.meta.env.VITE_API_URL;
-    const user_id = 2;
+    const user_id = userID;
 
   return (
     <div>
-      <ContextMenuContainer groupID={groupID} handleTaskGroupDelete={handleTaskGroupDelete} items={contextMenuItems_TaskGroup} showGroupInputField={showGroupInputField}>
+      <ContextMenuContainer userID={userID} groupID={groupID} handleTaskGroupDelete={handleTaskGroupDelete} items={contextMenuItems_TaskGroup} showGroupInputField={showGroupInputField}>
       <motion.h2 
-      className="text-orange-700 font-semibold mt-1" 
+      className="text-orange-700 font-semibold mt-1 text-lg md:text-base" 
       onClick={() => {setIsOpen(!isOpen)}}
       initial={{ scale: 1 }} 
       whileHover={{ scale: 1.02 }}
@@ -52,6 +52,7 @@ function TaskGroup( {taskCompleteNotify, setGroupInputPopup, setTasksData, group
             } )}
 
             setGroupInputPopup({ isVisible: false, label: '' });
+            setIsOpen(true);
           }}>Submit</button>
           </div>
         )}
@@ -67,7 +68,7 @@ function TaskGroup( {taskCompleteNotify, setGroupInputPopup, setTasksData, group
         >
         <ul className="ml-4">
         {tasks?.map((task, index) => {
-            return <Task taskCompleteNotify={taskCompleteNotify} handleTaskDelete={handleTaskDelete} task={task} key={index} taskdetails={taskdetails?.filter((detail) => {
+            return <Task userID={userID} handleTaskDetailAdd={handleTaskDetailAdd} taskCompleteNotify={taskCompleteNotify} handleTaskDelete={handleTaskDelete} task={task} key={index} taskdetails={taskdetails?.filter((detail) => {
               return detail.task_id == task.id
             })}/>
         })}

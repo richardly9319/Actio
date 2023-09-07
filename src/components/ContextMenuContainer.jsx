@@ -3,14 +3,15 @@ import React, { useState } from 'react';
 import ContextMenu from './ContextMenu';
 import axios from 'axios';
 
-const ContextMenuContainer = ({ itemId, handleItemDelete, groupID, children, items, showInputField, showGroupInputField, handleTaskGroupDelete }) => {
+const ContextMenuContainer = ({ userID, itemId, handleItemDelete, groupID, children, items, showInputField, showGroupInputField, handleTaskGroupDelete }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const [menuItems, setMenuItems] = useState([]);
   const [clickedItemId, setClickedItemId] = useState(null);
 
   const apiUrl = import.meta.env.VITE_API_URL;
-    const user_id = 2;
+    const user_id = userID;
+
 
   const handleContextMenu = (e, items) => {
     e.preventDefault();
@@ -41,6 +42,7 @@ const ContextMenuContainer = ({ itemId, handleItemDelete, groupID, children, ite
         showInputField('Note');
         console.log('add_item_note fired');
       } else if (action === "delete_item") {
+        console.log("itemId", itemId);
         handleItemDelete(itemId);
       }
   };

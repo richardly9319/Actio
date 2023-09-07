@@ -6,7 +6,7 @@ import axios from "axios";
 
 import ContextMenuContainer from "../ContextMenuContainer";
 
-function Section( {userData, setUserData, sectionTitle, sectionItems, sectionDetails, sectionType} ) {
+function Section( {userID, userData, setUserData, sectionTitle, sectionItems, sectionDetails, sectionType} ) {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -23,9 +23,10 @@ function Section( {userData, setUserData, sectionTitle, sectionItems, sectionDet
     const inputRef = useRef();
 
     const apiUrl = import.meta.env.VITE_API_URL;
-    const user_id = 2;
+    const user_id = userID;
 
     const handleItemDelete = (itemId) => {
+      console.log("sectionType: ", sectionType)
       axios
         .delete(`${apiUrl}/${user_id}/${sectionType}/${itemId}`)
         .then((response) => {
@@ -44,10 +45,10 @@ function Section( {userData, setUserData, sectionTitle, sectionItems, sectionDet
     
 
   return (
-    <div className="mt-2">
-        <ContextMenuContainer items={contextMenuItems} showInputField={showInputField}>
+    <div className="mt-2 pl-2 md:pl-0">
+        <ContextMenuContainer userID={userID} items={contextMenuItems} showInputField={showInputField}>
         <motion.h2 
-        className="text-lg font-semibold text-green-800" 
+        className="text-2xl md:text-lg font-semibold text-sky-700" 
         onClick={() => {setIsOpen(!isOpen)}}
         initial={{ scale: 1 }} 
         whileHover={{ scale: 1.02 }}
@@ -73,17 +74,24 @@ function Section( {userData, setUserData, sectionTitle, sectionItems, sectionDet
                 if (inputPopup.label == "Item") {
                 axios.post(`${apiUrl}/${user_id}/${sectionType}`, {[sectionType]: {"item_name": value, "user_id": user_id}})
                 .then((response) => {
+                  console.log("API Response: ", response);
+                  const newItem = {
+                    ...response.data.newItem[sectionType],
+                    id: response.data.newItem.id
+                  };
+                  console.log("newItem:", newItem);
                   setUserData(prevData => ({
                     ...prevData,
-                    [sectionType]: [...prevData[sectionType], response.data.newItem[sectionType]]
+                    [sectionType]: [...prevData[sectionType], newItem]
                   }));
                 })
                 .catch((err) => {
                   console.log(err);
-                })
+                });
               }
 
               setInputPopup({ isVisible: false, label: '' });
+              setIsOpen(true);
             }}>
               Submit
             </button>
@@ -98,7 +106,7 @@ function Section( {userData, setUserData, sectionTitle, sectionItems, sectionDet
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
             >
-            <ItemList handleItemDelete={handleItemDelete} setUserData={setUserData} sectionType={sectionType} sectionItems={sectionItems} sectionDetails={sectionDetails} />
+            <ItemList userID={userID} handleItemDelete={handleItemDelete} setUserData={setUserData} sectionType={sectionType} sectionItems={sectionItems} sectionDetails={sectionDetails} />
             </motion.div>
             : null
         }

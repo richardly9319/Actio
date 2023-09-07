@@ -6,14 +6,14 @@ import ContextMenuContainer from "./ContextMenuContainer"
 import { useRef } from 'react';
 import axios from 'axios';
 
-function Item( {handleItemDelete, setUserData, sectionType, itemId, itemName, itemDetails} ) {
+function Item( {userID, handleItemDelete, setUserData, sectionType, itemId, itemName, itemDetails} ) {
 
   const apiUrl = import.meta.env.VITE_API_URL;
-  const user_id = 2;
+  const user_id = userID;
 
   const inputRef = useRef();
 
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   let contextMenuItems;
 
@@ -29,6 +29,8 @@ function Item( {handleItemDelete, setUserData, sectionType, itemId, itemName, it
 
   const [inputPopup, setInputPopup] = useState({ isVisible: false, label: '' });
 
+  const [forceUpdate, setForceUpdate] = useState(0);
+
     const showInputField = (label) => {
       setInputPopup({ isVisible: true, label });
     };
@@ -37,12 +39,12 @@ function Item( {handleItemDelete, setUserData, sectionType, itemId, itemName, it
 
   return (
     <div>
-    <ContextMenuContainer itemId={itemId} handleItemDelete={handleItemDelete} showInputField={showInputField} items={contextMenuItems}>
+    <ContextMenuContainer userID={userID} itemId={itemId} handleItemDelete={handleItemDelete} showInputField={showInputField} items={contextMenuItems}>
     <motion.li
     initial={{ color: "rgb(55, 65, 81, 1)" }}
     whileHover={{ color: "rgb(110, 113, 125)" }}
     transition={{ duration: 0.2 }}
-    className="font-semibold flex text-gray-700 leading-relaxed" onContextMenu={(e) => {
+    className="font-semibold flex text-gray-700 text-lg md:text-base md:leading-relaxed mt-1 md:mt-0" onContextMenu={(e) => {
         e.preventDefault();
       }} onClick={() => {setIsOpen(!isOpen)}}>
        {itemName} 
@@ -73,6 +75,7 @@ function Item( {handleItemDelete, setUserData, sectionType, itemId, itemName, it
                     ...prevData,
                     [itemTypeDetails]: [...prevData[itemTypeDetails], response.data.newDetail]
                   }));
+                  
                 })
                 .catch((err) => {
                   console.log(err);
@@ -80,6 +83,7 @@ function Item( {handleItemDelete, setUserData, sectionType, itemId, itemName, it
               }
               
               setInputPopup({ isVisible: false, label: '' });
+              setIsOpen(true);
             }}>
               Submit
             </button>
