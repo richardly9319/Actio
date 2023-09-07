@@ -40,12 +40,12 @@ function Modal({setIsOpen, handleTaskDetailAdd, handleTaskDelete, task, closeMod
           alt="Delete"
         />
       </div>
-      <p className="text-lg mt-2">Priority level: {task.priority_level}</p>
-      <p className="text-lg mt-2">Due Date: {readableDueDate}</p>
+      <p className="text-md mt-2">Priority level: {task.priority_level}</p>
+      <p className="text-md mt-2">Due Date: {readableDueDate}</p>
       {(task.reoccurance != 0) && (
-        <p className="text-lg mt-2">Reoccurring: Every {task.reoccurance} day(s)</p>
+        <p className="text-md mt-2">Reoccurring: Every {task.reoccurance} day(s)</p>
       )}
-      <p className="text-lg mt-2 hover:font-semibold cursor-pointer" onClick={toggleInput}>Add Note</p>
+      <p className="text-lg mt-2 hover:font-semibold cursor-pointer text-blue-800" onClick={toggleInput}>Add Note</p>
       {showInput && (
         <div className="mt-2">
           <input 
@@ -60,8 +60,14 @@ function Modal({setIsOpen, handleTaskDetailAdd, handleTaskDelete, task, closeMod
           >
             Add
           </button>
+          
         </div>
       )}
+
+<p 
+onClick={ () => { handleTaskDelete(task.id);
+  closeModal();}}
+className="text-lg mt-2 hover:font-semibold cursor-pointer text-orange-700" >Postpone</p>
     </div>
   );
 }

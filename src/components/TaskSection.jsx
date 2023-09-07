@@ -106,7 +106,7 @@ function TaskSection( {userID, taskCompleteNotify, sectionTitle} ) {
 
   return (
     <motion.div 
-    className="rounded-lg pl-5 md:pl-3 pt-4 md:pt-2 pb-2 md:mt-2"
+    className="md:rounded-lg pl-5 md:pl-3 pt-4 md:pt-2 pb-2 md:mt-2"
     animate={
       isOpen ? {
         backgroundImage: "linear-gradient(to right, rgba(211, 211, 211, 0.2), white)"}
