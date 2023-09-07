@@ -16,53 +16,46 @@ export default function App() {
 
   const taskCompleteNotify = () => toast.success("Task Complete!");
 
-  const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState({});  // Changed to an object
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
   const [userID, setUserID] = useState(null);
-  const [isInitialized, setIsInitialized] = useState(false);
-
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
-  useEffect(() => {
-    if (!isInitialized) {
-        const storedUserID = localStorage.getItem('userID');
-  
-        if (!storedUserID) {
-            const userInputID = prompt("Please enter your unique user ID:");
-  
-            // Save to local storage regardless of its length
-            localStorage.setItem('userID', userInputID);
-  
-            if (userInputID && userInputID.length > 2) {
-                setUserID(userInputID);
-            } else {
-                console.error('Valid User ID is required.'); 
-            }
-        } else {
-            setUserID(storedUserID);
-        }
-  
-        setIsInitialized(true);
-    }
-  }, [isInitialized]);
-  
-
-  useEffect(() => {
-    // If userID is set in state, then fetch the user data
-    if (userID) {
-      axios.get(`${apiUrl}/${userID}`)
+  const fetchData = (id) => {
+    axios.get(`${apiUrl}/${id}`)
       .then((response) => {
         console.log(response.data);
         setUserData(response.data);
       }).catch(error => {
         console.error('Error fetching user data:', error);
       });
+  };
+
+  useEffect(() => {
+    const storedUserID = localStorage.getItem('userID');
+
+    if (!storedUserID) {
+      const userInputID = prompt("Please enter your unique user ID:");
+      localStorage.setItem('userID', userInputID); 
+
+      if (userInputID && userInputID.length > 2) {
+        setUserID(prevState => {
+          fetchData(userInputID);  // Fetch data inside the callback
+          return userInputID;
+        });
+      } else {
+        console.error('Valid User ID is required.');
+      }
+    } else {
+      setUserID(prevState => {
+        fetchData(storedUserID);  // Fetch data inside the callback
+        return storedUserID;
+      });
     }
-  }, [userID]);
+  }, []);
 
   return (
     <div className="md:pt-8 flex flex-col md:flex-row min-h-screen" onContextMenu={(e) => {
