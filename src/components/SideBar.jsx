@@ -16,7 +16,9 @@ function SideBar({ toggleSidebar, sidebarOpen }) {
             <button className="block p-2 rounded cursor-pointer hover:bg-blue-100">Settings</button>
             <button className="block p-2 rounded cursor-pointer hover:bg-blue-100">Download App</button>
             <button className="block p-2 rounded cursor-pointer hover:bg-blue-100">Upgrade to Pro</button>
-            <button className="block p-2 rounded cursor-pointer hover:bg-blue-100">Logout</button>
+            <button onClick={() => {localStorage.removeItem('userID');
+          toggleSidebar();
+          }} className="block p-2 rounded cursor-pointer hover:bg-blue-100">Logout</button>
             <img src={menuIcon} alt="Side Menu" className="absolute right-4 top-4 w-6" onClick={toggleSidebar} />
         </motion.div>
     )
