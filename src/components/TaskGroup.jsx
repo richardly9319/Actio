@@ -19,6 +19,12 @@ function TaskGroup({
   const user_id = userID;
 
   useEffect(() => {
+    if (groupInputPopup.isVisible && groupID === groupInputPopup.groupId) {
+        inputRef.current.focus();
+    }
+}, [groupInputPopup.isVisible, groupID]);
+
+  useEffect(() => {
     // Function to check if clicked outside of the input
     const handleOutsideClick = (event) => {
       if (inputRef.current && !inputRef.current.contains(event.target)) {
@@ -35,6 +41,30 @@ function TaskGroup({
     };
   }, []);
 
+  const handleTaskCreation = () => {
+    const value = inputRef.current.value;
+    console.log("groupInputPopup.label: ", groupInputPopup.label)
+    if (groupInputPopup.label === "Item") {
+      axios.post(`${apiUrl}/${user_id}/tasks`, {
+        "task": {
+          "task_name": value,
+          "user_id": user_id,
+          "taskgroup_id": groupID
+        }
+      })
+      .then((response) => {
+        setTasksData(prevData => ({
+          ...prevData,
+          tasks: [...prevData.tasks, response.data.task]
+        }));
+      }).catch((err) => {
+        console.log(err);
+      });
+    }
+    setGroupInputPopup({ isVisible: false, label: '' });
+    setIsOpen(true);
+  };
+
   return (
     <div>
       <ContextMenuContainer userID={userID} groupID={groupID} handleTaskGroupDelete={handleTaskGroupDelete} items={contextMenuItems_TaskGroup} showGroupInputField={showGroupInputField}>
@@ -48,37 +78,7 @@ function TaskGroup({
         </motion.h2>
       </ContextMenuContainer>
       
-      {groupInputPopup.isVisible && groupID === groupInputPopup.groupId && (
-        <div>
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder={`Enter ${groupInputPopup.label} Name`}
-          />
-          <button onClick={() => {
-            const value = inputRef.current.value;
-            if (groupInputPopup.label === "New Task") {
-              axios.post(`${apiUrl}/${user_id}/tasks`, {
-                "task": {
-                  "task_name": value,
-                  "user_id": user_id,
-                  "taskgroup_id": groupID
-                }
-              })
-                .then((response) => {
-                  setTasksData(prevData => ({
-                    ...prevData,
-                    tasks: [...prevData.tasks, response.data.task]
-                  }));
-                }).catch((err) => {
-                  console.log(err);
-                });
-            }
-            setGroupInputPopup({ isVisible: false, label: '' });
-            setIsOpen(true);
-          }}>Submit</button>
-        </div>
-      )}
+      
 
       <AnimatePresence>
         {isOpen && 
@@ -108,6 +108,25 @@ function TaskGroup({
           </motion.div>
         }
       </AnimatePresence>
+
+      {groupInputPopup.isVisible && groupID === groupInputPopup.groupId && (
+        <div className="pl-4">
+          <input
+            ref={inputRef}
+            type="text"
+            placeholder={`Enter ${groupInputPopup.label} Name`}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                console.log("key fired");
+                handleTaskCreation();
+              }
+            }}
+            autoFocus
+          />
+        </div>
+      )}
+        
+      
     </div>
   )
 }
