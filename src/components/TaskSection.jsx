@@ -92,6 +92,23 @@ function TaskSection( {userID, taskCompleteNotify, sectionTitle} ) {
       });
     }, [])
 
+    useEffect(() => {
+      // Function to check if clicked outside of the input
+      const handleOutsideClick = (event) => {
+        if (inputRef.current && !inputRef.current.contains(event.target)) {
+          setInputPopup({ isVisible: false, label: '' });
+        }
+      };
+    
+      // Add the outside click checker to the event listener
+      document.addEventListener('mousedown', handleOutsideClick);
+    
+      // Clean up the event listener on component unmount
+      return () => {
+        document.removeEventListener('mousedown', handleOutsideClick);
+      };
+    }, []);
+
 
     const contextMenuItems = [
       { label: "Add Task", action: "add_task" },
