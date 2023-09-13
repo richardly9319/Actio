@@ -65,7 +65,7 @@ function Section( {userID, userData, setUserData, sectionTitle, sectionItems, se
     <div className="mt-2 pl-2 md:pl-0">
         <ContextMenuContainer userID={userID} items={contextMenuItems} showInputField={showInputField}>
         <motion.h2 
-        className="text-2xl md:text-lg font-semibold text-sky-700" 
+        className="text-2xl md:text-lg font-semibold text-primary-navy" 
         onClick={() => {setIsOpen(!isOpen)}}
         initial={{ scale: 1 }} 
         whileHover={{ scale: 1.02 }}

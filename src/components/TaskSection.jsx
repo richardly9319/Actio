@@ -184,23 +184,7 @@ const handleSubmit = () => {
         </motion.h2>
         </ContextMenuContainer>
 
-        {/* {inputPopup.isVisible && (
-                <motion.div
-                initial={{ opacity: 0 }} 
-                animate={{ opacity: 1 }} 
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                >
-              <input
-                ref={inputRef}
-                type="text"
-                placeholder={`Enter ${inputPopup.label} Name`}
-                onKeyDown={handleKeyDown}
-                autoFocus
-                />
-              
-            </motion.div>
-          )} */}
+        
 
         <AnimatePresence>
         {(isOpen) ? 
