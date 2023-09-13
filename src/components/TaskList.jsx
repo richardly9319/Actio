@@ -1,8 +1,9 @@
 import Detail from "./Detail";
 import Task from "./Task";
 import TaskGroup from "./TaskGroup";
+import { motion, AnimatePresence } from "framer-motion"
 
-function TaskList( {userID, handleTaskDetailAdd, taskCompleteNotify, setGroupInputPopup, setTasksData, groupInputPopup, handleTaskGroupDelete, showGroupInputField, taskgroups, tasks, taskdetails, handleTaskDelete, contextMenuItems_TaskGroup} ) {
+function TaskList( {handleKeyDown, inputRef, inputPopup, userID, handleTaskDetailAdd, taskCompleteNotify, setGroupInputPopup, setTasksData, groupInputPopup, handleTaskGroupDelete, showGroupInputField, taskgroups, tasks, taskdetails, handleTaskDelete, contextMenuItems_TaskGroup} ) {
 
   return (
     <ul className="ml-4">
@@ -14,6 +15,24 @@ function TaskList( {userID, handleTaskDetailAdd, taskCompleteNotify, setGroupInp
               return detail.task_id == task.id
             })}/>
         })}
+
+            {inputPopup.isVisible && (
+                <motion.div
+                initial={{ opacity: 0 }} 
+                animate={{ opacity: 1 }} 
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                >
+              <input
+                ref={inputRef}
+                type="text"
+                placeholder={`Enter ${inputPopup.label} Name`}
+                onKeyDown={handleKeyDown}
+                autoFocus
+                />
+              
+            </motion.div>
+          )}
 
         <div className="mt-1">
         {taskgroups?.map((taskgroup, index) => {

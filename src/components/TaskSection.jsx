@@ -78,6 +78,41 @@ function TaskSection( {userID, taskCompleteNotify, sectionTitle} ) {
               console.error("Error adding Task Detail:", error);
           });
   };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+        handleSubmit();
+    }
+}
+
+
+const handleSubmit = () => {
+  const value = inputRef.current.value;
+  if (inputPopup.label === "Task") {
+      axios.post(`${apiUrl}/${user_id}/tasks`, {"task": {"task_name": value, "user_id": user_id}})
+      .then((response) => {
+          setTasksData(prevData => ({
+              ...prevData,
+              tasks: [...prevData.tasks, response.data.task]
+          }));
+      }).catch((err) => {
+          console.log(err);
+      })
+  } else if (inputPopup.label === "Group") {
+      axios.post(`${apiUrl}/${user_id}/taskgroups`, {"taskGroup": {"taskgroup_name": value, "user_id": user_id}})
+      .then((response) => {
+          setTasksData(prevData => ({
+              ...prevData,
+              taskgroups: [...prevData.taskgroups, response.data.taskGroup]
+          }));
+      }).catch((err) => {
+          console.log(err);
+      })
+  }
+
+  setInputPopup({ isVisible: false, label: '' });
+}
+
   
 
     useEffect(() => {
@@ -148,7 +183,7 @@ function TaskSection( {userID, taskCompleteNotify, sectionTitle} ) {
         </motion.h2>
         </ContextMenuContainer>
 
-        {inputPopup.isVisible && (
+        {/* {inputPopup.isVisible && (
                 <motion.div
                 initial={{ opacity: 0 }} 
                 animate={{ opacity: 1 }} 
@@ -159,39 +194,12 @@ function TaskSection( {userID, taskCompleteNotify, sectionTitle} ) {
                 ref={inputRef}
                 type="text"
                 placeholder={`Enter ${inputPopup.label} Name`}
+                onKeyDown={handleKeyDown}
                 autoFocus
-              />
-              <button onClick={() => {
-                const value = inputRef.current.value;
-                if (inputPopup.label == "Task") {
-                  console.log('user_id:', user_id);
-                axios.post(`${apiUrl}/${user_id}/tasks`, {"task": {"task_name": value, "user_id": user_id}})
-                .then((response) => {
-                  setTasksData(prevData => ({
-                    ...prevData,
-                    tasks: [...prevData.tasks, response.data.task]
-                  }));
-                }).catch((err) => {
-                  console.log(err);
-                } )} else if (inputPopup.label == "Group") {
-                  // console.log("group fired");
-                  axios.post(`${apiUrl}/${user_id}/taskgroups`, {"taskGroup": {"taskgroup_name": value, "user_id": user_id}})
-                .then((response) => {
-                  setTasksData(prevData => ({
-                    ...prevData,
-                    taskgroups: [...prevData.taskgroups, response.data.taskGroup]
-                  }));
-                }).catch((err) => {
-                  console.log(err);
-                })
-                }
-
-                setInputPopup({ isVisible: false, label: '' });
-              }}>
-                Submit
-              </button>
+                />
+              
             </motion.div>
-          )}
+          )} */}
 
         <AnimatePresence>
         {(isOpen) ? 
@@ -201,7 +209,7 @@ function TaskSection( {userID, taskCompleteNotify, sectionTitle} ) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
             >
-            <TaskList userID={userID} handleTaskDetailAdd={handleTaskDetailAdd} taskCompleteNotify={taskCompleteNotify} setGroupInputPopup={setGroupInputPopup} setTasksData={setTasksData} groupInputPopup={groupInputPopup} handleTaskGroupDelete={handleTaskGroupDelete} showGroupInputField={showGroupInputField} contextMenuItems_TaskGroup={contextMenuItems_TaskGroup} handleTaskDelete={handleTaskDelete} taskgroups={tasksData.taskgroups} tasks={tasksData.tasks} taskdetails={tasksData.tasksdetails} />
+            <TaskList inputPopup={inputPopup} inputRef={inputRef} handleKeyDown={handleKeyDown} userID={userID} handleTaskDetailAdd={handleTaskDetailAdd} taskCompleteNotify={taskCompleteNotify} setGroupInputPopup={setGroupInputPopup} setTasksData={setTasksData} groupInputPopup={groupInputPopup} handleTaskGroupDelete={handleTaskGroupDelete} showGroupInputField={showGroupInputField} contextMenuItems_TaskGroup={contextMenuItems_TaskGroup} handleTaskDelete={handleTaskDelete} taskgroups={tasksData.taskgroups} tasks={tasksData.tasks} taskdetails={tasksData.tasksdetails} />
             </motion.div>
             : null
         }
