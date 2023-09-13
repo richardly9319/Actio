@@ -67,6 +67,7 @@ function Item({ userID, handleItemDelete, setUserData, sectionType, itemId, item
                     />
                     <button onClick={() => {
                         const value = inputRef.current.value;
+                        console.log("submitted?");
 
                         if (inputPopup.label == "Note") {
                             axios.post(`${apiUrl}/${user_id}/${sectionType}/${itemId}`, { "detail_text": value })
