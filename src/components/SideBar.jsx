@@ -12,15 +12,17 @@ function SideBar({ toggleSidebar, sidebarOpen }) {
             // If the sidebar is open and the clicked target is not within the sidebar, close it
             if (sidebarOpen && sidebarRef.current && !sidebarRef.current.contains(event.target)) {
                 toggleSidebar();
+                event.stopPropagation();
+                event.preventDefault();
             }
         }
 
         // Attach the click event listener
-        document.addEventListener('mousedown', handleOutsideClick);
+        document.addEventListener('click', handleOutsideClick, true);
 
         // Cleanup the event listener on component unmount
         return () => {
-            document.removeEventListener('mousedown', handleOutsideClick);
+            document.removeEventListener('click', handleOutsideClick, true);
         };
     }, [sidebarOpen, toggleSidebar]);
 
