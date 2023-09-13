@@ -25,8 +25,9 @@ function Modal({setIsOpen, handleTaskDetailAdd, handleTaskDelete, task, closeMod
   };
 
   return (
-    <div className="flex flex-col justify-center bg-white rounded-lg p-4 shadow-lg"
-    style={{ background: "linear-gradient(to left, rgba(248, 248, 248, 1) 0%, rgba(255,255,255, 1) 100%)" }}
+    <div 
+    // className="flex flex-col justify-center bg-white rounded-lg p-4 shadow-lg"
+    // style={{ background: "linear-gradient(to left, rgba(248, 248, 248, 1) 0%, rgba(255,255,255, 1) 100%)" }}
     >
       <div className="flex justify-between w-full">
         <h2 className="text-lg font-semibold">{task.task_name}</h2>
