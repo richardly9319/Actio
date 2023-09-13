@@ -88,9 +88,10 @@ function TaskSection( {userID, taskCompleteNotify, sectionTitle} ) {
 
 const handleSubmit = () => {
   const value = inputRef.current.value;
-  if (inputPopup.label === "Task") {
+  if (inputPopup.label === "Item") {
       axios.post(`${apiUrl}/${user_id}/tasks`, {"task": {"task_name": value, "user_id": user_id}})
       .then((response) => {
+        console.log("axios fired")
           setTasksData(prevData => ({
               ...prevData,
               tasks: [...prevData.tasks, response.data.task]
@@ -157,7 +158,7 @@ const handleSubmit = () => {
     ];
 
     const contextMenuItems_TaskGroup = [
-      { label: "Create New Task", action: "new_task" },
+      { label: "Add Item", action: "new_task" },
       { label: "Delete Group", action: "delete_group" },
       
 

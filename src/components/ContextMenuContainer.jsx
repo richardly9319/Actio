@@ -27,22 +27,19 @@ const ContextMenuContainer = ({ userID, itemId, handleItemDelete, groupID, child
   };
 
   const handleMenuItemClick = (action) => {
-    console.log(`Clicked on: ${action}`);
     if (action === 'add_task') {
-        showInputField('Task');
+        showInputField('Item');
       } else if (action === 'add_group') {
         showInputField('Group');
       } else if (action === 'delete_group') {
         handleTaskGroupDelete(groupID);
       } else if (action === 'new_task') {
-        showGroupInputField('New Task', groupID);
+        showGroupInputField('Item', groupID);
       } else if (action === "Add_section") {
         showInputField('Item');
       } else if (action ==="Add_item_note") {
         showInputField('Note');
-        console.log('add_item_note fired');
       } else if (action === "delete_item") {
-        console.log("itemId", itemId);
         handleItemDelete(itemId);
       }
   };
