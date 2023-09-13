@@ -48,7 +48,7 @@ function Item({ userID, handleItemDelete, setUserData, sectionType, itemId, item
                     initial={{ color: "rgb(55, 65, 81, 1)" }}
                     whileHover={{ color: "rgb(110, 113, 125)" }}
                     transition={{ duration: 0.2 }}
-                    className="font-medium flex text-gray-700 text-lg md:text-base md:leading-relaxed mt-1 md:mt-0"
+                    className="cursor-pointer font-medium flex text-gray-700 text-lg md:text-base md:leading-relaxed mt-1 md:mt-0"
                     onClick={() => { setIsOpen(!isOpen) }}>
                     {itemName}
                 </motion.li>

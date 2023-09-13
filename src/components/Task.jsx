@@ -39,7 +39,7 @@ function Task( {userID, handleTaskDetailAdd, taskCompleteNotify, handleTaskDelet
         </motion.div>
         </ReactModal>
         
-    <li className="flex text-black mt-1 md:mt-0 text-lg md:text-base md:leading-relaxed" onContextMenu={(e) => {
+    <li className="flex cursor-pointer text-black mt-1 md:mt-0 text-lg md:text-base md:leading-relaxed" onContextMenu={(e) => {
         e.preventDefault();
         openModal();
       }} onClick={() => {setIsOpen(!isOpen)}} >
