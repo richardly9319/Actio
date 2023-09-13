@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 function SideBar({ toggleSidebar, sidebarOpen }) {
     return (
         <motion.div
-            className="fixed top-0 right-0 h-screen w-1/2 md:w-64 bg-gray-100 z-50 p-2"
+            className="fixed top-0 right-0 h-screen w-3/5 md:w-64 bg-gray-100 z-50 p-2"
             style={{ background: "linear-gradient(to right, rgba(245, 245, 250, 1) 0%, rgba(255,255,255, 1) 100%)" }}
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
