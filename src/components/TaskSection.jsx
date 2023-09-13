@@ -109,9 +109,15 @@ function TaskSection( {userID, taskCompleteNotify, sectionTitle} ) {
       };
     }, []);
 
+    useEffect(() => {
+      if (inputPopup.isVisible) {
+          inputRef.current.focus();
+      }
+  }, [inputPopup.isVisible]);
+
 
     const contextMenuItems = [
-      { label: "Add Task", action: "add_task" },
+      { label: "Add Item", action: "add_task" },
       { label: "Add Group", action: "add_group" },
     ];
 
@@ -153,6 +159,7 @@ function TaskSection( {userID, taskCompleteNotify, sectionTitle} ) {
                 ref={inputRef}
                 type="text"
                 placeholder={`Enter ${inputPopup.label} Name`}
+                autoFocus
               />
               <button onClick={() => {
                 const value = inputRef.current.value;
