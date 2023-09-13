@@ -42,6 +42,23 @@ function Section( {userID, userData, setUserData, sectionTitle, sectionItems, se
         });
     };
 
+    useEffect(() => {
+      function handleClickOutside(event) {
+        // Check if the user clicked outside of the input
+        if (inputRef.current && !inputRef.current.contains(event.target)) {
+          setInputPopup({ isVisible: false, label: '' });
+        }
+      }
+  
+      // Add the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+  
+      // Cleanup the event listener on component unmount
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+  }, []);
+
     
 
   return (

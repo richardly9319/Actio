@@ -85,19 +85,18 @@ useEffect(() => {
       )}
 
       <div className="w-full md:w-1/2 md:ml-24">
-      <Section userID={userID} setUserData={setUserData} sectionTitle="Goals & Objectives" sectionType="goals" sectionItems={userData.goals} sectionDetails={userData.goaldetails} />
         {userID && <TaskSection userID={userID} taskCompleteNotify={taskCompleteNotify} sectionTitle="Action Items" />}
       </div>
 
       <div className="w-full md:w-1/2 mb-8 md:ml-2 mr-8 pl-3 pt-2 pb-2">
+        <Section userID={userID} setUserData={setUserData} sectionTitle="Goals & Objectives" sectionType="goals" sectionItems={userData.goals} sectionDetails={userData.goaldetails} />
         
-        <Section userID={userID} setUserData={setUserData} sectionTitle="Challenges/Crossroads" sectionType="challenges" sectionItems={userData.challenges} sectionDetails={userData.challengedetails} />
-        <Section sectionTitle="Focuses" />
-        <Section userID={userID} setUserData={setUserData} sectionTitle="Inspiration" sectionType="inspiration" sectionItems={userData.inspiration} sectionDetails={userData.inspirationdetails} />
-        <Section userID={userID} setUserData={setUserData} sectionTitle="Insights & Ideas" sectionType="insightsIdeas" sectionItems={userData.insightsIdeas} sectionDetails={userData.insightIdeasdetails}/>
+        <Section userID={userID} setUserData={setUserData} sectionTitle="Challenges & Obstacles" sectionType="challenges" sectionItems={userData.challenges} sectionDetails={userData.challengedetails} />
+        {/* <Section sectionTitle="Solutions" /> */}
+        {/* <Section userID={userID} setUserData={setUserData} sectionTitle="Inspiration" sectionType="inspiration" sectionItems={userData.inspiration} sectionDetails={userData.inspirationdetails} /> */}
+        {/* <Section userID={userID} setUserData={setUserData} sectionTitle="Insights & Ideas" sectionType="insightsIdeas" sectionItems={userData.insightsIdeas} sectionDetails={userData.insightIdeasdetails}/> */}
       </div>
       
-      {/* <img id="BookImage" className="opacity-70 fixed bottom-5 left-1/2 translate-x-[-50%] -z-2 w-16 md:w-36" src={book} alt="book" /> */}
     </div>
   )
 }
