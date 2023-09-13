@@ -1,10 +1,32 @@
 import React from 'react'
 import menuIcon from '../assets/menuIcon.svg'
 import { motion, AnimatePresence } from "framer-motion"
+import { useEffect, useRef } from 'react'
 
 function SideBar({ toggleSidebar, sidebarOpen }) {
+
+    const sidebarRef = useRef(null);
+
+    useEffect(() => {
+        function handleOutsideClick(event) {
+            // If the sidebar is open and the clicked target is not within the sidebar, close it
+            if (sidebarOpen && sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+                toggleSidebar();
+            }
+        }
+
+        // Attach the click event listener
+        document.addEventListener('mousedown', handleOutsideClick);
+
+        // Cleanup the event listener on component unmount
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        };
+    }, [sidebarOpen, toggleSidebar]);
+
     return (
         <motion.div
+            ref={sidebarRef}
             className="fixed top-0 right-0 h-screen w-3/5 md:w-64 bg-gray-100 z-50 p-2"
             style={{ background: "linear-gradient(to right, rgba(245, 245, 250, 1) 0%, rgba(255,255,255, 1) 100%)" }}
             initial={{ x: "100%" }}
