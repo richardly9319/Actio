@@ -8,7 +8,6 @@ function DetailList( {details} ) {
     <motion.div
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1 }} 
-        exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
     >
     <ul className="ml-4 list-disc list-inside">

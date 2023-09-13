@@ -90,17 +90,18 @@ function Item({ userID, handleItemDelete, setUserData, sectionType, itemId, item
                 </motion.div>
             )}
 
-            <AnimatePresence>
+            {/* <AnimatePresence> */}
                 {isOpen &&
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.5 }}>
+                    // <div
+                        // initial={{ opacity: 0 }}
+                        // animate={{ opacity: 1 }}
+                        // // exit={{ opacity: 0 }}
+                        // transition={{ duration: 0.5 }}
+                        // >
                         <DetailList details={itemDetails?.filter(detail => detail.section_id === itemId)} />
-                    </motion.div>
+                    // </div>
                 }
-            </AnimatePresence>
+            {/* </AnimatePresence> */}
         </div>
     )
 }

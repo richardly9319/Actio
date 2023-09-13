@@ -120,7 +120,6 @@ function Section( {userID, userData, setUserData, sectionTitle, sectionItems, se
             <motion.div
             initial={{ opacity: 0 }} 
             animate={{ opacity: 1 }} 
-            exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
             >
             <ItemList userID={userID} handleItemDelete={handleItemDelete} setUserData={setUserData} sectionType={sectionType} sectionItems={sectionItems} sectionDetails={sectionDetails} />
