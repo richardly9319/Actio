@@ -16,11 +16,11 @@ export default function App() {
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const notificationSound = new Audio(notificationSoundSrc);
-  notificationSound.volume = 0.25;
+  notificationSound.volume = 0.35;
 
   const taskCompleteNotify = () => {
     notificationSound.play();
-    toast.success("Complete!");
+    toast.success("Task Complete!");
   }
 
   const [userData, setUserData] = useState({});  // Changed to an object
