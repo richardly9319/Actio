@@ -169,7 +169,7 @@ const handleSubmit = () => {
 
   return (
     <motion.div 
-    className="mx-2 mt-2 pl-5 md:pl-3 pt-4 md:pt-2 pb-4 md:mt-2 pr-4 border-b-2 border-primary-navy/8 border-groove"
+    className="mx-4 mt-2 px-3 md:pl-3 pt-4 md:pt-2 pb-4 md:mt-2 pr-4"
     // animate={
     //   isOpen ? {
     //     backgroundImage: "linear-gradient(to right, rgba(211, 211, 211, 0.2), white)"}

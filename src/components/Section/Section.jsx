@@ -62,7 +62,7 @@ function Section( {userID, userData, setUserData, sectionTitle, sectionItems, se
     
 
   return (
-    <div className="mt-2 pl-2 pr-4 md:pl-0">
+    <div className="pt-4 px-2 mr-4 ml-2 pb-4 md:pl-0 border-t-2 border-primary-navy/8 border-groove">
         <ContextMenuContainer userID={userID} items={contextMenuItems} showInputField={showInputField}>
         <motion.h2 
         className="md:cursor-pointer text-2xl md:text-lg font-semibold text-black" 
@@ -118,7 +118,7 @@ function Section( {userID, userData, setUserData, sectionTitle, sectionItems, se
         <AnimatePresence>
         {(isOpen) ? 
             <motion.div
-            initial={{ opacity: 0, y: -10, scaleY: 0.35 }}   // Starts above with scaled down completely on the Y-axis
+            initial={{ opacity: 0, y: -10, scaleY: 0.25 }}   // Starts above with scaled down completely on the Y-axis
             animate={{ opacity: 1, y: 0, scaleY: 1 }}     // Falls down to its position while opening up
             transition={{ duration: 0.2 }}
             style={{ transformOrigin: 'top' }} 

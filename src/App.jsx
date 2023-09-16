@@ -65,7 +65,7 @@ useEffect(() => {
 
 
   return (
-    <div className="select-none md:pt-8 flex flex-col md:flex-row min-h-screen" onContextMenu={(e) => {
+    <div className="select-none md:pt-8 flex flex-col md:flex-row min-h-screen w-screen" onContextMenu={(e) => {
       e.preventDefault();
     }}>
       <ToastContainer
