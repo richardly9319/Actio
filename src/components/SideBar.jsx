@@ -45,7 +45,7 @@ function SideBar({ toggleSidebar, sidebarOpen }) {
                 toggleSidebar();
                 window.location.reload();
           }} className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:text-primary-navy hover:font-semibold active:bg-gray-200">Logout</button>
-            <img src={menuIcon} alt="Side Menu" className="absolute right-4 top-4 w-6" onClick={toggleSidebar} />
+            <img src={menuIcon} alt="Side Menu" className="absolute right-4 top-4 w-7" onClick={toggleSidebar} />
         </motion.div>
     )
 }
