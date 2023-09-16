@@ -2,6 +2,10 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
+.text-primary-navy-shadow {
+  text-shadow: 0px 0px 0.55px #002855;
+}
+
 /* .Toastify__toast-body {
   color: #002855;
 } */

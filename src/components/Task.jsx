@@ -51,7 +51,7 @@ function Task( {taskGroup, userID, handleTaskDetailAdd, taskCompleteNotify, hand
         taskCompleteNotify();
       
       }} 
-        className='mr-1 hover:text-green-600'>〇 </div> {task.task_name}
+        className='mr-1 text-primary-navy text-primary-navy-shadow hover:text-green-600'>〇 </div> {task.task_name}
       </li>
     
     {(isOpen) ? 
