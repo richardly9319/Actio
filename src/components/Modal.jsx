@@ -26,7 +26,7 @@ function Modal({taskGroup, setIsOpen, handleTaskDetailAdd, handleTaskDelete, tas
   };
 
   return (
-    <div 
+    <div className="select-none"
     // className="flex flex-col justify-center bg-white rounded-lg p-4 shadow-lg"
     // style={{ background: "linear-gradient(to left, rgba(248, 248, 248, 1) 0%, rgba(255,255,255, 1) 100%)" }}
     >
