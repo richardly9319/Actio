@@ -31,6 +31,8 @@ export default function App() {
     setSidebarOpen(!sidebarOpen);
   };
 
+  console.log("userData in App.jsx: ", userData)
+
   const fetchData = (id) => {
     axios.get(`${apiUrl}/${id}`)
       .then((response) => {
@@ -96,9 +98,9 @@ useEffect(() => {
       </div>
 
       <div className="w-full md:w-1/2 mb-8 md:ml-2 mr-8 pl-3 pt-2 pb-2">
-        <Section userID={userID} setUserData={setUserData} sectionTitle="Goals & Objectives" sectionType="goals" sectionItems={userData.goals} sectionDetails={userData.goaldetails} />
+        <Section userData={userData} userID={userID} setUserData={setUserData} sectionTitle="Goals & Objectives" sectionType="goals" sectionItems={userData.goals} sectionDetails={userData.goaldetails} />
         
-        <Section userID={userID} setUserData={setUserData} sectionTitle="Challenges & Obstacles" sectionType="challenges" sectionItems={userData.challenges} sectionDetails={userData.challengedetails} />
+        <Section userData={userData} userID={userID} setUserData={setUserData} sectionTitle="Challenges & Obstacles" sectionType="challenges" sectionItems={userData.challenges} sectionDetails={userData.challengedetails} />
         {/* <Section sectionTitle="Solutions" /> */}
         {/* <Section userID={userID} setUserData={setUserData} sectionTitle="Inspiration" sectionType="inspiration" sectionItems={userData.inspiration} sectionDetails={userData.inspirationdetails} /> */}
         {/* <Section userID={userID} setUserData={setUserData} sectionTitle="Insights & Ideas" sectionType="insightsIdeas" sectionItems={userData.insightsIdeas} sectionDetails={userData.insightIdeasdetails}/> */}

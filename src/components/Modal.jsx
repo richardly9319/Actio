@@ -25,6 +25,12 @@ function Modal({taskGroup, setIsOpen, handleTaskDetailAdd, handleTaskDelete, tas
     setIsOpen(true);
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+        handleAddNote();
+    }
+}
+
   return (
     <div className="select-none"
     // className="flex flex-col justify-center bg-white rounded-lg p-4 shadow-lg"
@@ -51,7 +57,10 @@ function Modal({taskGroup, setIsOpen, handleTaskDetailAdd, handleTaskDelete, tas
       }
       <p className="text-md mt-2">Group: {taskGroup}</p>
       
-      <p className="text-lg mt-2 hover:font-semibold cursor-pointer text-blue-800" onClick={toggleInput}>Add Note</p>
+      {!showInput && (
+        <p className="text-lg mt-2 hover:font-semibold cursor-pointer text-blue-800" onClick={toggleInput}>Add Note</p>
+      )}
+      
       {showInput && (
         <div className="mt-2">
           <input 
@@ -59,13 +68,10 @@ function Modal({taskGroup, setIsOpen, handleTaskDetailAdd, handleTaskDelete, tas
             value={note} 
             onChange={(e) => setNote(e.target.value)} 
             className="border rounded-lg p-2 w-full"
+            autoFocus
+            onKeyDown={handleKeyDown}
           />
-          <button 
-            onClick={handleAddNote}
-            className="mt-2 w-16 bg-blue-800 text-white p-2 rounded-lg hover:bg-blue-700"
-          >
-            Add
-          </button>
+          
           
         </div>
       )}

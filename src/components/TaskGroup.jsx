@@ -69,7 +69,7 @@ function TaskGroup({
     <div>
       <ContextMenuContainer userID={userID} groupID={groupID} handleTaskGroupDelete={handleTaskGroupDelete} items={contextMenuItems_TaskGroup} showGroupInputField={showGroupInputField}>
         <motion.h2 
-          className="text-gray-700 md:cursor-pointer font-medium mt-1 text-lg md:text-base" 
+          className="text-primary-orange md:cursor-pointer font-medium mt-1 text-lg md:text-base" 
           onClick={() => { setIsOpen(!isOpen) }}
           initial={{ scale: 1 }} 
           whileHover={{ scale: 1.02 }}

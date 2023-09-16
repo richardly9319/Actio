@@ -71,6 +71,8 @@ function TaskSection( {userID, taskCompleteNotify, sectionTitle} ) {
       axios
           .post(`${apiUrl}/${user_id}/tasks/${taskId}`, { taskDetail: newTaskDetail, taskId, userID })
           .then((response) => {
+            console.log("response.data.taskDetail", response.data.taskDetail)
+            console.log("tasksData: ", tasksData);
               setTasksData((prevData) => ({
                   ...prevData,
                   tasksdetails: [...prevData.tasksdetails, response.data.taskDetail]
@@ -120,7 +122,6 @@ const handleSubmit = () => {
   
 
     useEffect(() => {
-      console.log("Fetching data for user:", user_id)
       axios.get(`${apiUrl}/${user_id}/tasks`)
       .then((response) => {
         console.log("tasksData: ", response.data)

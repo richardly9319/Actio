@@ -10,6 +10,7 @@ function Section( {userID, userData, setUserData, sectionTitle, sectionItems, se
 
     const [isOpen, setIsOpen] = useState(false);
 
+
     const [inputPopup, setInputPopup] = useState({ isVisible: false, label: '' });
 
     const showInputField = (label) => {
@@ -24,6 +25,30 @@ function Section( {userID, userData, setUserData, sectionTitle, sectionItems, se
 
     const apiUrl = import.meta.env.VITE_API_URL;
     const user_id = userID;
+
+    const handleSubmit = () => {
+      const value = inputRef.current.value;
+
+                
+                if (inputPopup.label == "Item") {
+                axios.post(`${apiUrl}/${user_id}/${sectionType}`, {[sectionType]: {"item_name": value, "user_id": user_id}})
+                .then((response) => {
+                  console.log("API Response: ", response);
+                  const newItem = {
+                    ...response.data.newItem[sectionType],
+                    id: response.data.newItem.id
+                  };
+                  console.log("newItem:", newItem);
+                  setUserData(prevData => ({
+                    ...prevData,
+                    [sectionType]: [...prevData[sectionType], newItem]
+                  }));
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+              }}
+    
 
     const handleItemDelete = (itemId) => {
       console.log("sectionType: ", sectionType)
@@ -71,49 +96,6 @@ function Section( {userID, userData, setUserData, sectionTitle, sectionItems, se
         whileHover={{ scale: 1.02 }}
         >{sectionTitle}</motion.h2>
         </ContextMenuContainer>
-        
-        {inputPopup.isVisible && (
-                <motion.div
-                initial={{ opacity: 0 }} 
-                animate={{ opacity: 1 }} 
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                >
-              <input
-                ref={inputRef}
-                type="text"
-                placeholder={`Enter ${inputPopup.label} Name`}
-              />
-              <button onClick={() => {
-                const value = inputRef.current.value;
-
-                
-                if (inputPopup.label == "Item") {
-                axios.post(`${apiUrl}/${user_id}/${sectionType}`, {[sectionType]: {"item_name": value, "user_id": user_id}})
-                .then((response) => {
-                  console.log("API Response: ", response);
-                  const newItem = {
-                    ...response.data.newItem[sectionType],
-                    id: response.data.newItem.id
-                  };
-                  console.log("newItem:", newItem);
-                  setUserData(prevData => ({
-                    ...prevData,
-                    [sectionType]: [...prevData[sectionType], newItem]
-                  }));
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
-              }
-
-              setInputPopup({ isVisible: false, label: '' });
-              setIsOpen(true);
-            }}>
-              Submit
-            </button>
-            </motion.div>
-        )}
 
         <AnimatePresence>
         {(isOpen) ? 
@@ -123,7 +105,7 @@ function Section( {userID, userData, setUserData, sectionTitle, sectionItems, se
             transition={{ duration: 0.2 }}
             style={{ transformOrigin: 'top' }} 
             >
-            <ItemList userID={userID} handleItemDelete={handleItemDelete} setUserData={setUserData} sectionType={sectionType} sectionItems={sectionItems} sectionDetails={sectionDetails} />
+            <ItemList userData={userData} handleSubmit={handleSubmit} setInputPopup={setInputPopup} inputRef={inputRef} inputPopup={inputPopup} userID={userID} handleItemDelete={handleItemDelete} setUserData={setUserData} sectionType={sectionType} sectionItems={sectionItems} sectionDetails={sectionDetails} />
             </motion.div>
             : null
         }

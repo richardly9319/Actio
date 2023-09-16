@@ -4,12 +4,13 @@ import { motion, AnimatePresence } from "framer-motion"
 import ContextMenuContainer from "./ContextMenuContainer";
 import axios from 'axios';
 
-function Item({ userID, handleItemDelete, setUserData, sectionType, itemId, itemName, itemDetails }) {
+function Item({ userData, userID, handleItemDelete, setUserData, sectionType, itemId, itemName, itemDetails }) {
     const apiUrl = import.meta.env.VITE_API_URL;
     const user_id = userID;
 
     const inputRef = useRef();
     const [isOpen, setIsOpen] = useState(false);
+
 
     const contextMenuItems = sectionType === "goals" || sectionType === "challenges" ? [
         { label: "Add new note", action: "Add_item_note" },
@@ -23,6 +24,31 @@ function Item({ userID, handleItemDelete, setUserData, sectionType, itemId, item
     const showInputField = (label) => {
         setInputPopup({ isVisible: true, label });
     };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+
+        
+        const value = inputRef.current.value;
+
+                        if (inputPopup.label == "Note") {
+                            axios.post(`${apiUrl}/${user_id}/${sectionType}/${itemId}`, { "detail_text": value })
+                                .then((response) => {
+                                    const itemTypeDetails = sectionType.slice(0, -1) + "details";
+                                    
+                                    setUserData(prevData => ({
+                                        ...prevData,
+                                        [itemTypeDetails]: [...prevData[itemTypeDetails], response.data.newDetail]
+                                    }));
+                                })
+                                .catch((err) => {
+                                    console.log(err);
+                                });
+                        }
+
+                        setInputPopup({ isVisible: false, label: '' });
+                        setIsOpen(true);
+      }}
 
     useEffect(() => {
       function handleClickOutside(event) {
@@ -45,51 +71,29 @@ function Item({ userID, handleItemDelete, setUserData, sectionType, itemId, item
         <div>
             <ContextMenuContainer userID={userID} itemId={itemId} handleItemDelete={handleItemDelete} showInputField={showInputField} items={contextMenuItems}>
                 <motion.li
-                    initial={{ color: "rgb(55, 65, 81, 1)" }}
-                    whileHover={{ color: "rgb(110, 113, 125)" }}
-                    transition={{ duration: 0.2 }}
-                    className="md:cursor-pointer font-medium flex text-gray-700 text-lg md:text-base md:leading-relaxed mt-1 md:mt-0"
+                    className="md:cursor-pointer font-medium flex text-secondary-navy text-lg md:text-base md:leading-relaxed mt-1 md:mt-0"
                     onClick={() => { setIsOpen(!isOpen) }}>
                     {itemName}
                 </motion.li>
             </ContextMenuContainer>
 
+
             {inputPopup.isVisible && (
                 <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}>
-                    <input
-                        ref={inputRef}
-                        type="text"
-                        placeholder={`Enter ${inputPopup.label} Name`}
-                    />
-                    <button onClick={() => {
-                        const value = inputRef.current.value;
-                        console.log("submitted?");
-
-                        if (inputPopup.label == "Note") {
-                            axios.post(`${apiUrl}/${user_id}/${sectionType}/${itemId}`, { "detail_text": value })
-                                .then((response) => {
-                                    const itemTypeDetails = sectionType.slice(0, -1) + "details";
-                                    setUserData(prevData => ({
-                                        ...prevData,
-                                        [itemTypeDetails]: [...prevData[itemTypeDetails], response.data.newDetail]
-                                    }));
-                                })
-                                .catch((err) => {
-                                    console.log(err);
-                                });
-                        }
-
-                        setInputPopup({ isVisible: false, label: '' });
-                        setIsOpen(true);
-                    }}>
-                        Submit
-                    </button>
-                </motion.div>
-            )}
+                initial={{ opacity: 0 }} 
+                animate={{ opacity: 1 }} 
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                >
+              <input
+                ref={inputRef}
+                type="text"
+                placeholder={`Enter ${inputPopup.label} Name`}
+                onKeyDown={handleKeyDown}
+                autoFocus
+              />
+            </motion.div>
+        )}
 
             {/* <AnimatePresence> */}
                 {isOpen &&
