@@ -93,7 +93,7 @@ const handleSubmit = () => {
   if (inputPopup.label === "Item") {
       axios.post(`${apiUrl}/${user_id}/tasks`, {"task": {"task_name": value, "user_id": user_id}})
       .then((response) => {
-        console.log("axios fired")
+        setIsOpen(true);
           setTasksData(prevData => ({
               ...prevData,
               tasks: [...prevData.tasks, response.data.task]
@@ -104,6 +104,7 @@ const handleSubmit = () => {
   } else if (inputPopup.label === "Group") {
       axios.post(`${apiUrl}/${user_id}/taskgroups`, {"taskGroup": {"taskgroup_name": value, "user_id": user_id}})
       .then((response) => {
+          setIsOpen(true);
           setTasksData(prevData => ({
               ...prevData,
               taskgroups: [...prevData.taskgroups, response.data.taskGroup]
@@ -201,7 +202,7 @@ const handleSubmit = () => {
             >
             <TaskList inputPopup={inputPopup} inputRef={inputRef} handleKeyDown={handleKeyDown} userID={userID} handleTaskDetailAdd={handleTaskDetailAdd} taskCompleteNotify={taskCompleteNotify} setGroupInputPopup={setGroupInputPopup} setTasksData={setTasksData} groupInputPopup={groupInputPopup} handleTaskGroupDelete={handleTaskGroupDelete} showGroupInputField={showGroupInputField} contextMenuItems_TaskGroup={contextMenuItems_TaskGroup} handleTaskDelete={handleTaskDelete} taskgroups={tasksData.taskgroups} tasks={tasksData.tasks} taskdetails={tasksData.tasksdetails} />
             </motion.div>
-            : null
+            : <TaskList inputPopup={inputPopup} inputRef={inputRef} handleKeyDown={handleKeyDown} userID={userID} handleTaskDetailAdd={handleTaskDetailAdd} taskCompleteNotify={taskCompleteNotify} setGroupInputPopup={setGroupInputPopup} setTasksData={setTasksData} groupInputPopup={groupInputPopup} handleTaskGroupDelete={handleTaskGroupDelete} showGroupInputField={showGroupInputField} contextMenuItems_TaskGroup={contextMenuItems_TaskGroup} handleTaskDelete={handleTaskDelete} />
         }
         </AnimatePresence>
 

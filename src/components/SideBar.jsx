@@ -36,13 +36,13 @@ function SideBar({ toggleSidebar, sidebarOpen }) {
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.15 }}
         >
-            <button className="text-xl md:text-base block p-2 rounded cursor-pointer hover:bg-gray-200">Dark Theme</button>
-            <button className="text-xl md:text-base block p-2 rounded cursor-pointer hover:bg-gray-200">Settings</button>
-            <button className="text-xl md:text-base block p-2 rounded cursor-pointer hover:bg-gray-200">Download App</button>
-            <button className="text-xl md:text-base block p-2 rounded cursor-pointer hover:bg-gray-200">Upgrade to Pro</button>
+            <button className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:bg-gray-200">Dark Theme</button>
+            <button className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:bg-gray-200">Settings</button>
+            <button className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:bg-gray-200">Download App</button>
+            <button className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:bg-gray-200">Upgrade to Pro</button>
             <button onClick={() => {localStorage.removeItem('userID');
           toggleSidebar();
-          }} className="text-xl md:text-base block p-2 rounded cursor-pointer hover:bg-gray-200">Logout</button>
+          }} className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:bg-gray-200">Logout</button>
             <img src={menuIcon} alt="Side Menu" className="absolute right-4 top-4 w-6" onClick={toggleSidebar} />
         </motion.div>
     )

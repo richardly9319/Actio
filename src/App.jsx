@@ -8,6 +8,7 @@ import menuIcon from "./assets/menuIcon.svg"
 import SideBar from "./components/SideBar";
 import { motion } from "framer-motion";
 import notificationSoundSrc from "./assets/sound2.mp3"
+import "./App.css";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
