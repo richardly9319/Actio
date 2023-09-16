@@ -6,7 +6,7 @@ function DetailList( {details} ) {
 
   return (
     <motion.div
-    initial={{ opacity: 0, y: -10, scaleY: 0.25 }}   // Starts above with scaled down completely on the Y-axis
+    initial={{ opacity: 0, y: -10, scaleY: 0.35 }}   // Starts above with scaled down completely on the Y-axis
     animate={{ opacity: 1, y: 0, scaleY: 1 }}     // Falls down to its position while opening up
     transition={{ duration: 0.2 }}
     style={{ transformOrigin: 'top' }} 
