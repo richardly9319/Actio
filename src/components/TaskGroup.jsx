@@ -69,7 +69,7 @@ function TaskGroup({
     <div>
       <ContextMenuContainer userID={userID} groupID={groupID} handleTaskGroupDelete={handleTaskGroupDelete} items={contextMenuItems_TaskGroup} showGroupInputField={showGroupInputField}>
         <motion.h2 
-          className="text-gray-700 cursor-pointer font-medium mt-1 text-lg md:text-base" 
+          className="text-gray-700 md:cursor-pointer font-medium mt-1 text-lg md:text-base" 
           onClick={() => { setIsOpen(!isOpen) }}
           initial={{ scale: 1 }} 
           whileHover={{ scale: 1.02 }}
@@ -83,9 +83,10 @@ function TaskGroup({
       <AnimatePresence>
         {isOpen && 
           <motion.div
-            initial={{ opacity: 0 }} 
-            animate={{ opacity: 1 }} 
-            transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: -10, scaleY: 0.25 }}   // Starts above with scaled down completely on the Y-axis
+    animate={{ opacity: 1, y: 0, scaleY: 1 }}     // Falls down to its position while opening up
+    transition={{ duration: 0.2 }}
+    style={{ transformOrigin: 'top' }} 
           >
             <ul className="ml-4">
               {tasks?.map((task, index) => {
