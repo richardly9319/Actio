@@ -1,3 +1,7 @@
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* .Toastify__toast-body {
   color: #002855;
 } */
