@@ -36,7 +36,7 @@ function Modal({setIsOpen, handleTaskDetailAdd, handleTaskDelete, task, closeMod
             handleTaskDelete(task.id);
             closeModal();
           }}
-          className="w-6 h-5 cursor-pointer"
+          className="w-6 h-5"
           src={deleteIcon}
           alt="Delete"
         />

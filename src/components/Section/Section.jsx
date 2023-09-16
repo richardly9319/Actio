@@ -62,10 +62,10 @@ function Section( {userID, userData, setUserData, sectionTitle, sectionItems, se
     
 
   return (
-    <div className="mt-2 pl-2 md:pl-0">
+    <div className="mt-2 pl-2 pr-4 md:pl-0">
         <ContextMenuContainer userID={userID} items={contextMenuItems} showInputField={showInputField}>
         <motion.h2 
-        className="cursor-pointer text-2xl md:text-lg font-semibold text-primary-navy" 
+        className="md:cursor-pointer text-2xl md:text-lg font-semibold text-black" 
         onClick={() => {setIsOpen(!isOpen)}}
         initial={{ scale: 1 }} 
         whileHover={{ scale: 1.02 }}
@@ -118,9 +118,10 @@ function Section( {userID, userData, setUserData, sectionTitle, sectionItems, se
         <AnimatePresence>
         {(isOpen) ? 
             <motion.div
-            initial={{ opacity: 0 }} 
-            animate={{ opacity: 1 }} 
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, y: -10, scaleY: 0.25 }}   // Starts above with scaled down completely on the Y-axis
+            animate={{ opacity: 1, y: 0, scaleY: 1 }}     // Falls down to its position while opening up
+            transition={{ duration: 0.2 }}
+            style={{ transformOrigin: 'top' }} 
             >
             <ItemList userID={userID} handleItemDelete={handleItemDelete} setUserData={setUserData} sectionType={sectionType} sectionItems={sectionItems} sectionDetails={sectionDetails} />
             </motion.div>
