@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useEffect, useState } from "react";
 import TaskSection from "./components/TaskSection";
 import ContextMenu from "./components/ContextMenu";
-import book from "./assets/book7.jpg"
 import menuIcon from "./assets/menuIcon.svg"
 import SideBar from "./components/SideBar";
 import { motion } from "framer-motion";
