@@ -170,16 +170,16 @@ const handleSubmit = () => {
 
   return (
     <motion.div 
-    className="md:rounded-lg pl-5 md:pl-3 pt-4 md:pt-2 pb-2 md:mt-2"
-    animate={
-      isOpen ? {
-        backgroundImage: "linear-gradient(to right, rgba(211, 211, 211, 0.2), white)"}
-    : {  backgroundImage: ""}
-    }
-    transition={{ duration: 1 }}
+    className="md:rounded-lg pl-5 md:pl-3 pt-4 md:pt-2 pb-2 md:mt-2 pr-4"
+    // animate={
+    //   isOpen ? {
+    //     backgroundImage: "linear-gradient(to right, rgba(211, 211, 211, 0.2), white)"}
+    // : {  backgroundImage: ""}
+    // }
+    // transition={{ duration: 1 }}
     >
       <ContextMenuContainer userID={userID} items={contextMenuItems} showInputField={showInputField}>
-        <motion.h2 className="cursor-pointer text-2xl md:text-lg font-semibold text-primary-navy" 
+        <motion.h2 className="md:cursor-pointer text-2xl md:text-lg font-semibold text-black" 
         onClick={() => {
           setIsOpen(!isOpen);
           
@@ -196,9 +196,10 @@ const handleSubmit = () => {
         <AnimatePresence>
         {(isOpen) ? 
             <motion.div
-            initial={{ opacity: 0 }} 
-            animate={{ opacity: 1 }} 
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, y: -10, scaleY: 0.25 }}   // Starts above with scaled down completely on the Y-axis
+    animate={{ opacity: 1, y: 0, scaleY: 1 }}     // Falls down to its position while opening up
+    transition={{ duration: 0.2 }}
+    style={{ transformOrigin: 'top' }} 
             >
             <TaskList inputPopup={inputPopup} inputRef={inputRef} handleKeyDown={handleKeyDown} userID={userID} handleTaskDetailAdd={handleTaskDetailAdd} taskCompleteNotify={taskCompleteNotify} setGroupInputPopup={setGroupInputPopup} setTasksData={setTasksData} groupInputPopup={groupInputPopup} handleTaskGroupDelete={handleTaskGroupDelete} showGroupInputField={showGroupInputField} contextMenuItems_TaskGroup={contextMenuItems_TaskGroup} handleTaskDelete={handleTaskDelete} taskgroups={tasksData.taskgroups} tasks={tasksData.tasks} taskdetails={tasksData.tasksdetails} />
             </motion.div>
