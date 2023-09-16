@@ -11,7 +11,7 @@ function TaskList( {handleKeyDown, inputRef, inputPopup, userID, handleTaskDetai
         {tasks?.filter((task) => {
           return task.taskgroup_id == null
         })?.map((task, index) => {
-            return <Task userID={userID} handleTaskDetailAdd={handleTaskDetailAdd} taskCompleteNotify={taskCompleteNotify} handleTaskDelete={handleTaskDelete} task={task} key={index} taskdetails={taskdetails?.filter((detail) => {
+            return <Task taskGroup="None" userID={userID} handleTaskDetailAdd={handleTaskDetailAdd} taskCompleteNotify={taskCompleteNotify} handleTaskDelete={handleTaskDelete} task={task} key={index} taskdetails={taskdetails?.filter((detail) => {
               return detail.task_id == task.id
             })}/>
         })}

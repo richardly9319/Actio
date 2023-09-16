@@ -8,7 +8,7 @@ import axios from 'axios';
 
 import { motion, AnimatePresence } from "framer-motion"
 
-function Task( {userID, handleTaskDetailAdd, taskCompleteNotify, handleTaskDelete, task, taskdetails} ) {
+function Task( {taskGroup, userID, handleTaskDetailAdd, taskCompleteNotify, handleTaskDelete, task, taskdetails} ) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -35,7 +35,7 @@ function Task( {userID, handleTaskDetailAdd, taskCompleteNotify, handleTaskDelet
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
       >
-        <Modal setIsOpen={setIsOpen} handleTaskDetailAdd={handleTaskDetailAdd} handleTaskDelete={handleTaskDelete} task={task} taskdetails={taskdetails} closeModal={closeModal} /> 
+        <Modal taskGroup={taskGroup} setIsOpen={setIsOpen} handleTaskDetailAdd={handleTaskDetailAdd} handleTaskDelete={handleTaskDelete} task={task} taskdetails={taskdetails} closeModal={closeModal} /> 
         </motion.div>
         </ReactModal>
         

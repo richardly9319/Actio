@@ -92,6 +92,7 @@ function TaskGroup({
               {tasks?.map((task, index) => {
                 return (
                   <Task 
+                    taskGroup={groupName}
                     userID={userID} 
                     handleTaskDetailAdd={handleTaskDetailAdd} 
                     taskCompleteNotify={taskCompleteNotify} 

@@ -4,7 +4,6 @@ import axios from "axios";
 import ContextMenuContainer from "./ContextMenuContainer"
 import { useRef } from 'react';
 import { motion, AnimatePresence } from "framer-motion"
-import swoosh1src from '../assets/Swoosh1.mp3';
 
 function TaskSection( {userID, taskCompleteNotify, sectionTitle} ) {
 
@@ -13,8 +12,7 @@ function TaskSection( {userID, taskCompleteNotify, sectionTitle} ) {
 
     const inputRef = useRef();
 
-    const swoosh1 = new Audio(swoosh1src);
-    swoosh1.volume = 0.35;
+
 
 
     const [tasksData, setTasksData] = useState([]);
@@ -190,7 +188,7 @@ const handleSubmit = () => {
         
         </motion.h2>
         </ContextMenuContainer>
-
+        
         
 
         <AnimatePresence>
@@ -206,6 +204,17 @@ const handleSubmit = () => {
             : null
         }
         </AnimatePresence>
+
+    
+
+<button onClick={() => {showInputField("Item")}} className="fixed bottom-4 right-4 md:bottom-8 md:right-8 w-11 h-11 bg-primary-navy text-white rounded-full 
+                  hover:bg-gray-400 
+                  active:bg-gray-500 active:scale-95 transform transition 
+                  flex items-center justify-center text-xl font-bold">
+    +
+</button>
+
+
         
         </motion.div>
   )

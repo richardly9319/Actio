@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import deleteIcon from '../assets/deleteIcon.png';
 
-function Modal({setIsOpen, handleTaskDetailAdd, handleTaskDelete, task, closeModal }) {
+function Modal({taskGroup, setIsOpen, handleTaskDetailAdd, handleTaskDelete, task, closeModal }) {
+  
   const [showInput, setShowInput] = useState(false);
   const [note, setNote] = useState('');
 
@@ -43,9 +44,13 @@ function Modal({setIsOpen, handleTaskDetailAdd, handleTaskDelete, task, closeMod
       </div>
       <p className="text-md mt-2">Priority level: {task.priority_level}</p>
       <p className="text-md mt-2">Due Date: {readableDueDate}</p>
-      {(task.reoccurance != 0) && (
-        <p className="text-md mt-2">Reoccurring: Every {task.reoccurance} day(s)</p>
-      )}
+      {
+        task.reoccurance != 0 
+          ? <p className="text-md mt-2">Reoccurring: Every {task.reoccurance} day(s)</p>
+          : <p className="text-md mt-2">Reoccurring: None</p>
+      }
+      <p className="text-md mt-2">Group: {taskGroup}</p>
+      
       <p className="text-lg mt-2 hover:font-semibold cursor-pointer text-blue-800" onClick={toggleInput}>Add Note</p>
       {showInput && (
         <div className="mt-2">
