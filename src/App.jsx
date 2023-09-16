@@ -3,14 +3,13 @@ import axios from 'axios';
 import { useEffect, useState } from "react";
 import TaskSection from "./components/TaskSection";
 import ContextMenu from "./components/ContextMenu";
+import book from "./assets/book7.jpg"
 import menuIcon from "./assets/menuIcon.svg"
 import SideBar from "./components/SideBar";
 import { motion } from "framer-motion";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-import notificationSoundSrc from './assets/sound2.mp3';
 
 export default function App() { 
   const apiUrl = import.meta.env.VITE_API_URL;
@@ -65,10 +64,9 @@ useEffect(() => {
 
 
   return (
-    <div className="select-none md:pt-8 min-h-screen " onContextMenu={(e) => {
+    <div className="select-none md:pt-8 flex flex-col md:flex-row min-h-screen" onContextMenu={(e) => {
       e.preventDefault();
     }}>
-    <div className="flex flex-col md:flex-row">
       <ToastContainer
         position="top-center"
         autoClose={500}
@@ -104,13 +102,7 @@ useEffect(() => {
         {/* <Section userID={userID} setUserData={setUserData} sectionTitle="Inspiration" sectionType="inspiration" sectionItems={userData.inspiration} sectionDetails={userData.inspirationdetails} /> */}
         {/* <Section userID={userID} setUserData={setUserData} sectionTitle="Insights & Ideas" sectionType="insightsIdeas" sectionItems={userData.insightsIdeas} sectionDetails={userData.insightIdeasdetails}/> */}
       </div>
-
       
-      
-    </div>
-
-    {/* <button className="fixed bottom-4 right-8 bg-gray-400 text-white p-2 rounded-md shadow-md hover:bg-primary-navy transition duration-300">+Item</button> */}
-
     </div>
   )
 }
