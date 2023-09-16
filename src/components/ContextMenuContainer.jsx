@@ -1,5 +1,4 @@
-// ContextMenuContainer.js
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import ContextMenu from './ContextMenu';
 import axios from 'axios';
 
@@ -10,15 +9,14 @@ const ContextMenuContainer = ({ userID, itemId, handleItemDelete, groupID, child
   const [clickedItemId, setClickedItemId] = useState(null);
 
   const apiUrl = import.meta.env.VITE_API_URL;
-    const user_id = userID;
-
+  const user_id = userID;
+  const longPressTimer = useRef(null); // Using a ref to manage the timer
 
   const handleContextMenu = (e, items) => {
     e.preventDefault();
     setMenuItems(items);
     setPosition({ top: e.clientY, left: e.clientX });
     setIsVisible(true);
-
   };
 
   const handleCloseMenu = () => {
@@ -44,8 +42,25 @@ const ContextMenuContainer = ({ userID, itemId, handleItemDelete, groupID, child
       }
   };
 
+  const handleTouchStart = (e) => {
+    longPressTimer.current = setTimeout(() => {
+      handleContextMenu(e, menuItems);
+    }, 1000); // Trigger after 1 second of touch-and-hold
+  };
+
+  const handleTouchEnd = () => {
+    if (longPressTimer.current) {
+      clearTimeout(longPressTimer.current);
+    }
+  };
+
   return (
-    <div className="relative inline-block" onContextMenu={(e) => handleContextMenu(e, menuItems)}>
+    <div 
+      className="relative inline-block" 
+      onContextMenu={(e) => handleContextMenu(e, menuItems)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {children}
       {isVisible && (
         <ContextMenu items={items} onClose={handleCloseMenu} onClick={handleMenuItemClick} />
