@@ -207,7 +207,7 @@ const handleSubmit = () => {
 
     
 
-<button onClick={() => {showInputField("Item")}} className="fixed bottom-4 right-4 md:bottom-8 md:right-8 w-11 h-11 bg-primary-navy text-white rounded-full 
+<button onClick={() => {showInputField("Item")}} className="fixed bottom-5 right-5 md:bottom-8 md:right-8 w-12 h-12 bg-primary-navy text-white rounded-full 
                   hover:bg-gray-400 
                   active:bg-gray-500 active:scale-95 transform transition 
                   flex items-center justify-center text-xl font-bold">
