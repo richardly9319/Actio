@@ -24,6 +24,7 @@ export default function App() {
     toast.success("Task Complete!");
   }
 
+  const [userID, setUserID] = useState(0);
   const [userData, setUserData] = useState({});
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [token, setToken] = useState(null);
@@ -56,21 +57,21 @@ export default function App() {
 
     if (response?.credential) {
         try {
-            console.log("try block hit");
             const serverResponse = await axios.post(`${apiUrl}/auth/google`, {
                 token: response.credential
             });
             
 
             if (serverResponse.data && serverResponse.data.user) {
-                setUserData(serverResponse.data.user);
-                setToken(serverResponse.data.user.token); // Assuming this is where the token is
-                setGoogleUserId(serverResponse.data.user.googleUserId); // Assuming this is where the Google user ID is
-                setIsLoggedIn(true);
-                toast.success("Logged in successfully!");
-            } else {
-                toast.error("Error logging in. Please try again.");
-            }
+              setUserData(serverResponse.data.user);
+              setToken(serverResponse.data.token); // Assuming this is where the token is
+              setGoogleUserId(serverResponse.data.user.googleUserId); // Assuming this is where the Google user ID is
+              setUserID(serverResponse.data.user.id); // Set the user's ID from the database
+              setIsLoggedIn(true);
+              toast.success("Logged in successfully!");
+          } else {
+              toast.error("Error logging in. Please try again.");
+          }
         } catch (error) {
             toast.error("Error connecting to server. Please try again.");
         }
@@ -88,10 +89,10 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (googleUserId && token) {
+    if (userID && token) {
       fetchData();
     }
-  }, [googleUserId, token]);
+  }, [userID, token]);
 
   return (
     <GoogleOAuthProvider clientId="307941107777-dch3oqprahp6b0l8ea21aiquilkq7suo.apps.googleusercontent.com">
@@ -119,11 +120,11 @@ export default function App() {
           <SideBar toggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen}/>
         )}
         <div className="w-full md:w-1/2 md:ml-24">
-          {googleUserId && <TaskSection userID={googleUserId} taskCompleteNotify={taskCompleteNotify} sectionTitle="Action Items" />}
+          {userID && <TaskSection userID={userID} taskCompleteNotify={taskCompleteNotify} sectionTitle="Action Items" />}
         </div>
         <div className="w-full md:w-1/2 mb-8 md:ml-2 mr-8 pl-3 pt-2 pb-2">
-          <Section userData={userData} userID={googleUserId} setUserData={setUserData} sectionTitle="Goals & Objectives" sectionType="goals" sectionItems={userData.goals} sectionDetails={userData.goaldetails} />
-          <Section userData={userData} userID={googleUserId} setUserData={setUserData} sectionTitle="Challenges & Obstacles" sectionType="challenges" sectionItems={userData.challenges} sectionDetails={userData.challengedetails} />
+          <Section userData={userData} userID={userID} setUserData={setUserData} sectionTitle="Goals & Objectives" sectionType="goals" sectionItems={userData.goals} sectionDetails={userData.goaldetails} />
+          <Section userData={userData} userID={userID} setUserData={setUserData} sectionTitle="Challenges & Obstacles" sectionType="challenges" sectionItems={userData.challenges} sectionDetails={userData.challengedetails} />
         </div>
         {!isLoggedIn && (
         <GoogleLogin
