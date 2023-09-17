@@ -49,16 +49,32 @@ export default function App() {
     });
   };
 
-  const responseGoogle = (response) => {
-    console.log("response: ", response);
-    if (response?.tokenId && response?.profileObj?.googleId) {
-        setToken(response.tokenId);
-        setGoogleUserId(response.profileObj.googleId); // Set the Google ID for the user
-        localStorage.setItem('userToken', response.tokenId);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const responseGoogle = async (response) => {
+    if (response?.tokenId) {
+        try {
+            const serverResponse = await axios.post(`${apiUrl}/auth/google`, {
+                token: response.tokenId
+            });
+            
+            if (serverResponse.data && serverResponse.data.user) {
+                setUserData(serverResponse.data.user);
+                setToken(serverResponse.data.user.token); // Assuming this is where the token is
+                setGoogleUserId(serverResponse.data.user.googleUserId); // Assuming this is where the Google user ID is
+                setIsLoggedIn(true);
+                toast.success("Logged in successfully!");
+            } else {
+                toast.error("Error logging in. Please try again.");
+            }
+        } catch (error) {
+            toast.error("Error connecting to server. Please try again.");
+        }
     } else {
-        // handle errors or failed login
+        toast.error("Google authentication failed. Please try again.");
     }
-  };
+};
+
 
   useEffect(() => {
     const storedToken = localStorage.getItem('userToken');
@@ -105,14 +121,14 @@ export default function App() {
           <Section userData={userData} userID={googleUserId} setUserData={setUserData} sectionTitle="Goals & Objectives" sectionType="goals" sectionItems={userData.goals} sectionDetails={userData.goaldetails} />
           <Section userData={userData} userID={googleUserId} setUserData={setUserData} sectionTitle="Challenges & Obstacles" sectionType="challenges" sectionItems={userData.challenges} sectionDetails={userData.challengedetails} />
         </div>
-        {!token && (
-          <GoogleLogin
-            clientId="307941107777-dch3oqprahp6b0l8ea21aiquilkq7suo.apps.googleusercontent.com"
-            buttonText="Login with Google"
-            onSuccess={responseGoogle}
-            onError={responseGoogle}
-          />
-        )}
+        {!isLoggedIn && (
+        <GoogleLogin
+          clientId="307941107777-dch3oqprahp6b0l8ea21aiquilkq7suo.apps.googleusercontent.com"
+          buttonText="Login with Google"
+          onSuccess={responseGoogle}
+          onError={responseGoogle}
+        />
+      )}
       </div>
     </GoogleOAuthProvider>
   )
