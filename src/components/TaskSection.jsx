@@ -130,7 +130,7 @@ const handleSubmit = () => {
       }).catch(error => {
         console.error('Error fetching tasks data:', error);
       });
-    }, [])
+    }, [userID])
 
     useEffect(() => {
       // Function to check if clicked outside of the input
