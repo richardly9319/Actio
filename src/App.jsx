@@ -35,20 +35,20 @@ export default function App() {
   };
 
   const fetchData = () => {
-    // if (!token) return;
-
-    axios.get(`${apiUrl}/${userID}`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
+    let headers = {};
+    if (token) {
+        headers.Authorization = `Bearer ${token}`;
+    }
+    
+    axios.get(`${apiUrl}/${userID}`, { headers })
     .then((response) => {
       console.log(response.data);
       setUserData(response.data);
     }).catch(error => {
       console.error('Error fetching user data:', error);
     });
-  };
+};
+
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
