@@ -28,7 +28,7 @@ function Task({ taskGroup, userID, handleTaskDetailAdd, taskCompleteNotify, hand
     e.preventDefault();
     longPressTimer.current = setTimeout(() => {
       openModal();
-    }, 400); // 1 second for long press
+    }, 500);
   };
 
   // Handle the end of a touch event

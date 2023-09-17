@@ -6,6 +6,7 @@ const ContextMenu = ({ items, onClose, onClick }) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
+        event.stopPropagation();
         onClose();
       }
     };
