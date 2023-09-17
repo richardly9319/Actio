@@ -8,6 +8,7 @@ import SideBar from "./components/SideBar";
 import { motion } from "framer-motion";
 import notificationSoundSrc from "./assets/sound2.mp3"
 import "./App.css";
+import { GoogleLogin } from '@leecheuk/react-google-login';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -42,6 +43,19 @@ export default function App() {
         console.error('Error fetching user data:', error);
       });
   };
+
+  const responseGoogle = (response) => {
+    console.log(response);
+
+    // Here, you can check if the response contains an error or if it's successful
+    // For successful responses, you typically want to save the token and user details
+    if (response?.tokenId) {
+        // handle successful login
+    } else {
+        // handle errors or failed login
+    }
+};
+
 
   useEffect(() => {
     const storedUserID = localStorage.getItem('userID');
@@ -105,6 +119,13 @@ useEffect(() => {
         {/* <Section userID={userID} setUserData={setUserData} sectionTitle="Inspiration" sectionType="inspiration" sectionItems={userData.inspiration} sectionDetails={userData.inspirationdetails} /> */}
         {/* <Section userID={userID} setUserData={setUserData} sectionTitle="Insights & Ideas" sectionType="insightsIdeas" sectionItems={userData.insightsIdeas} sectionDetails={userData.insightIdeasdetails}/> */}
       </div>
+
+      <GoogleLogin
+      clientId="307941107777-dch3oqprahp6b0l8ea21aiquilkq7suo.apps.googleusercontent.com"
+      buttonText="Login with Google"
+      onSuccess={responseGoogle}
+      onFailure={responseGoogle}
+/>
       
     </div>
   )
