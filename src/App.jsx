@@ -56,10 +56,12 @@ export default function App() {
 
     if (response?.credential) {
         try {
+            console.log("try block hit");
             const serverResponse = await axios.post(`${apiUrl}/auth/google`, {
                 token: response.credential
             });
             
+
             if (serverResponse.data && serverResponse.data.user) {
                 setUserData(serverResponse.data.user);
                 setToken(serverResponse.data.user.token); // Assuming this is where the token is
