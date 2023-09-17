@@ -150,6 +150,10 @@ const logout = () => {
           onError={responseGoogle}
         />
       )}
+
+          {isLoggedIn && (
+        <button onClick={logout}>Logout</button>
+        )}      
       </div>
     </GoogleOAuthProvider>
   )
