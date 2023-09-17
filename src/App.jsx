@@ -37,7 +37,7 @@ export default function App() {
   const fetchData = () => {
     if (!token) return;
 
-    axios.get(`${apiUrl}/${googleUserId}`, {
+    axios.get(`${apiUrl}/${userID}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
