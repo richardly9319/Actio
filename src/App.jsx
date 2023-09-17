@@ -69,6 +69,7 @@ export default function App() {
               setUserID(serverResponse.data.user.id); // Set the user's ID from the database
               setIsLoggedIn(true);
               localStorage.setItem('userToken', serverResponse.data.token);
+              localStorage.setItem('userID', serverResponse.data.user.id);
               toast.success("Logged in successfully!");
           } else {
               toast.error("Error logging in. Please try again.");
@@ -86,15 +87,20 @@ const logout = () => {
   setToken(null);
   setIsLoggedIn(false);
   localStorage.removeItem('userToken');
+  localStorage.removeItem('userID');
   // Add any additional logout logic here...
 };
 
 
   useEffect(() => {
     const storedToken = localStorage.getItem('userToken');
+    const storedUserID = localStorage.getItem('userID');
     if (storedToken) {
       setToken(storedToken);
       setIsLoggedIn(true);
+    }
+    if (storedUserID) {
+      setUserID(storedUserID); // Set the user's ID
     }
   }, []);
 
