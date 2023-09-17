@@ -24,7 +24,7 @@ export default function App() {
     toast.success("Task Complete!");
   }
 
-  const [userID, setUserID] = useState(0);
+  const [userID, setUserID] = useState(null);
   const [userData, setUserData] = useState({});
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [token, setToken] = useState(null);
