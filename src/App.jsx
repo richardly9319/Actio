@@ -54,11 +54,10 @@ export default function App() {
   const responseGoogle = async (response) => {
     console.log("response: ", response)
 
-    if (response?.tokenId) {
-        console.log("response with .tokenId: ", response)
+    if (response?.credential) {
         try {
             const serverResponse = await axios.post(`${apiUrl}/auth/google`, {
-                token: response.tokenId
+                token: response.credential
             });
             
             if (serverResponse.data && serverResponse.data.user) {
