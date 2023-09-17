@@ -55,6 +55,7 @@ export default function App() {
     console.log("response: ", response)
 
     if (response?.tokenId) {
+        console.log("response with .tokenId: ", response)
         try {
             const serverResponse = await axios.post(`${apiUrl}/auth/google`, {
                 token: response.tokenId
