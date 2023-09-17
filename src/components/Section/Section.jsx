@@ -89,12 +89,10 @@ function Section( {userID, userData, setUserData, sectionTitle, sectionItems, se
   return (
     <div className="pt-4 px-2 mr-4 ml-2 pb-4 md:pl-0 border-t-2 border-primary-navy/8 border-groove md:border-0">
         <ContextMenuContainer userID={userID} items={contextMenuItems} showInputField={showInputField}>
-        <motion.h2 
+        <h2 
         className="md:cursor-pointer text-2xl md:text-lg font-semibold text-black" 
         onClick={() => {setIsOpen(!isOpen)}}
-        initial={{ scale: 1 }} 
-        whileHover={{ scale: 1.02 }}
-        >{sectionTitle}</motion.h2>
+        >{sectionTitle}</h2>
         </ContextMenuContainer>
 
         <AnimatePresence>

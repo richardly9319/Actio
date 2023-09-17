@@ -88,6 +88,7 @@ const logout = () => {
   setIsLoggedIn(false);
   localStorage.removeItem('userToken');
   localStorage.removeItem('userID');
+  setUserID("2");
   // Add any additional logout logic here...
 };
 

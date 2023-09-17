@@ -179,16 +179,15 @@ const handleSubmit = () => {
     // transition={{ duration: 1 }}
     >
       <ContextMenuContainer userID={userID} items={contextMenuItems} showInputField={showInputField}>
-        <motion.h2 className="md:cursor-pointer text-2xl md:text-lg font-semibold text-black" 
+        <h2 className="md:cursor-pointer text-2xl md:text-lg font-semibold text-black" 
         onClick={() => {
           setIsOpen(!isOpen);
           
         }}
-        initial={{ scale: 1 }} 
-        whileHover={{ scale: 1.05 }}
+        
         >{sectionTitle}
         
-        </motion.h2>
+        </h2>
         </ContextMenuContainer>
         
         
