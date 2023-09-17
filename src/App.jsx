@@ -105,7 +105,7 @@ const logout = () => {
   }, []);
 
   useEffect(() => {
-    if (userID && token) {
+    if (userID) {
       fetchData();
     }
   }, [userID, token]);
