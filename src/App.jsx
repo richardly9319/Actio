@@ -35,7 +35,7 @@ export default function App() {
   };
 
   const fetchData = () => {
-    if (!token) return;
+    // if (!token) return;
 
     axios.get(`${apiUrl}/${userID}`, {
       headers: {
