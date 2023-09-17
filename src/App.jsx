@@ -68,6 +68,7 @@ export default function App() {
               setGoogleUserId(serverResponse.data.user.googleUserId); // Assuming this is where the Google user ID is
               setUserID(serverResponse.data.user.id); // Set the user's ID from the database
               setIsLoggedIn(true);
+              localStorage.setItem('userToken', serverResponse.data.token);
               toast.success("Logged in successfully!");
           } else {
               toast.error("Error logging in. Please try again.");
@@ -80,11 +81,20 @@ export default function App() {
     }
 };
 
+const logout = () => {
+  // Remove token from state and local storage
+  setToken(null);
+  setIsLoggedIn(false);
+  localStorage.removeItem('userToken');
+  // Add any additional logout logic here...
+};
+
 
   useEffect(() => {
     const storedToken = localStorage.getItem('userToken');
     if (storedToken) {
       setToken(storedToken);
+      setIsLoggedIn(true);
     }
   }, []);
 
