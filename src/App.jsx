@@ -52,6 +52,8 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const responseGoogle = async (response) => {
+    console.log("response: ", response)
+
     if (response?.tokenId) {
         try {
             const serverResponse = await axios.post(`${apiUrl}/auth/google`, {
