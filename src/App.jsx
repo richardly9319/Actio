@@ -21,7 +21,7 @@ export default function App() {
 
   const taskCompleteNotify = () => {
     notificationSound.play();
-    toast.success("Task Complete!");
+    toast.success("Complete!");
   }
 
   const [userID, setUserID] = useState(2);

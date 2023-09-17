@@ -71,7 +71,7 @@ function Item({ userData, userID, handleItemDelete, setUserData, sectionType, it
         <div>
             <ContextMenuContainer userID={userID} itemId={itemId} handleItemDelete={handleItemDelete} showInputField={showInputField} items={contextMenuItems}>
                 <motion.li
-                    className="leading-tight mb-1 md:cursor-pointer font-medium flex text-secondary-navy text-lg md:text-base md:leading-relaxed mt-1 md:mt-0"
+                    className="leading-tight mb-1 md:mb-0 md:cursor-pointer font-medium flex text-secondary-navy text-lg md:text-base md:leading-relaxed mt-1 md:mt-0"
                     onClick={() => { setIsOpen(!isOpen) }}>
                     {itemName}
                 </motion.li>
