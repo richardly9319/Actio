@@ -8,7 +8,8 @@ import SideBar from "./components/SideBar";
 import { motion } from "framer-motion";
 import notificationSoundSrc from "./assets/sound2.mp3"
 import "./App.css";
-import { GoogleLogin } from '@leecheuk/react-google-login';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleLogin } from '@react-oauth/google';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -45,7 +46,7 @@ export default function App() {
   };
 
   const responseGoogle = (response) => {
-    console.log(response);
+    console.log("response: ", response);
 
     // Here, you can check if the response contains an error or if it's successful
     // For successful responses, you typically want to save the token and user details
@@ -81,6 +82,7 @@ useEffect(() => {
 
 
   return (
+    <GoogleOAuthProvider clientId="307941107777-dch3oqprahp6b0l8ea21aiquilkq7suo.apps.googleusercontent.com">
     <div className="select-none md:pt-8 flex flex-col md:flex-row min-h-screen w-screen" onContextMenu={(e) => {
       e.preventDefault();
     }}>
@@ -124,9 +126,10 @@ useEffect(() => {
       clientId="307941107777-dch3oqprahp6b0l8ea21aiquilkq7suo.apps.googleusercontent.com"
       buttonText="Login with Google"
       onSuccess={responseGoogle}
-      onFailure={responseGoogle}
+      onError={responseGoogle}
 />
       
     </div>
+    </GoogleOAuthProvider>
   )
 }
