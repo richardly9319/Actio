@@ -58,7 +58,6 @@ function Task({ taskGroup, userID, handleTaskDetailAdd, taskCompleteNotify, hand
       <li 
         className="flex w-fit md:cursor-pointer text-black mt-1 md:mt-0 text-lg md:text-base md:leading-relaxed" 
         onTouchStart={handleTouchStart} // Add touch start handler
-        onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}     // Add touch end handler
         onContextMenu={(e) => {
           e.preventDefault();
@@ -73,7 +72,7 @@ function Task({ taskGroup, userID, handleTaskDetailAdd, taskCompleteNotify, hand
               handleTaskDelete(task.id);
               taskCompleteNotify();
             }} 
-          className='mr-1 text-primary-navy text-primary-navy-shadow hover:text-green-600'
+          className='mr-0.5 text-primary-navy text-primary-navy-shadow hover:text-green-600'
         >
           〇
         </div> 

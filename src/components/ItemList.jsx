@@ -16,7 +16,7 @@ function ItemList( {setContextMenuIsVisible, userData, handleSubmit, setInputPop
   }
 
   return (
-    <ul className="ml-4">
+    <ul className="ml-3">
         {sectionItems?.map((item, index) => {
             return <Item setContextMenuIsVisible={setContextMenuIsVisible} userData={userData} userID={userID} handleItemDelete={handleItemDelete} setUserData={setUserData} sectionType={sectionType} itemId={item.id} itemName={item.item_name} key={index} itemDetails={sectionDetails?.filter((detail, index) => {
               return item.id == sectionDetails[index].section_id

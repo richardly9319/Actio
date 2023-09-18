@@ -93,7 +93,7 @@ function Section( {setContextMenuIsVisible, userID, userData, setUserData, secti
     
 
   return (
-    <div className="pt-4 px-2 mr-4 ml-2 pb-4 md:pl-0 border-t-2 border-primary-navy/8 border-groove md:border-0">
+    <div className="pt-4 px-0 mr-4 ml-2 pb-4 md:pl-0 border-t-2 border-primary-navy/8 border-groove md:border-0">
         <ContextMenuContainer setContextMenuIsVisible={setContextMenuIsVisible} userID={userID} items={contextMenuItems} showInputField={showInputField}>
         <h2 
         className="mb-1 md:cursor-pointer text-2xl md:text-lg font-semibold text-black" 
