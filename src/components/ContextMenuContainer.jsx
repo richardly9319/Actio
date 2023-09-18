@@ -50,7 +50,7 @@ const ContextMenuContainer = ({ setContextMenuIsVisible, userID, itemId, handleI
   };
 
   const handleTouchEnd = () => {
-    e.preventDefault();
+    // e.preventDefault();
     if (longPressTimer.current) {
       clearTimeout(longPressTimer.current);
     }
