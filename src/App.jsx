@@ -131,7 +131,7 @@ const handleAppClick = (e) => {
       >
         <ToastContainer
           position="top-center"
-          autoClose={400}
+          autoClose={450}
           hideProgressBar={true}
           newestOnTop={false}
           closeOnClick
