@@ -28,8 +28,8 @@ const ContextMenu = ({ setContextMenuIsVisible, items, onClose, onClick }) => {
     };
 
     // Attach the event listeners
-    document.addEventListener('touchstart', handleTouchStart);
-    document.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('touchstart', handleTouchStart, { passive: false} );
+    document.addEventListener('mousedown', handleMouseDown, { passive: false});
 
     // Clean up the event listeners on component unmount
     return () => {
@@ -50,7 +50,7 @@ const ContextMenu = ({ setContextMenuIsVisible, items, onClose, onClick }) => {
         <li
           key={index}
           className="px-4 py-2 hover:bg-gray-100"
-          onClick={() => {
+          onClick={(e) => {
             handleItemClick(item.action);
             e.stopPropagation();
           }}
