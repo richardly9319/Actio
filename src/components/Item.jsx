@@ -48,6 +48,7 @@ function Item({ setContextMenuIsVisible, userData, userID, handleItemDelete, set
 
                         setInputPopup({ isVisible: false, label: '' });
                         setIsOpen(true);
+                        setContextMenuIsVisible(false)
       }}
 
     useEffect(() => {

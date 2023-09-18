@@ -7,11 +7,13 @@ import menuIcon from "./assets/menuIcon.svg"
 import SideBar from "./components/SideBar";
 import { motion } from "framer-motion";
 import notificationSoundSrc from "./assets/sound2.mp3"
-import "./App.css";
+
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
 import { ToastContainer, toast } from 'react-toastify';
+import { Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "./App.css";
 
 export default function App() { 
   const apiUrl = import.meta.env.VITE_API_URL;
@@ -129,12 +131,13 @@ const handleAppClick = (e) => {
       >
         <ToastContainer
           position="top-center"
-          autoClose={500}
+          autoClose={300}
           hideProgressBar={true}
           newestOnTop={false}
           closeOnClick
           rtl={false}
           theme="light"
+          transition={Slide}
         />
 
         <motion.img id="SideBar" 

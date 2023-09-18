@@ -117,6 +117,8 @@ const handleSubmit = () => {
   }
 
   setInputPopup({ isVisible: false, label: '' });
+  setContextMenuIsVisible(false)
+  
 }
 
   

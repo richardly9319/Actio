@@ -48,7 +48,10 @@ function Section( {setContextMenuIsVisible, userID, userData, setUserData, secti
                 .catch((err) => {
                   console.log(err);
                 });
-              }}
+              }
+            
+              setContextMenuIsVisible(false)
+            }
     
 
     const handleItemDelete = (itemId) => {
@@ -66,6 +69,8 @@ function Section( {setContextMenuIsVisible, userID, userData, setUserData, secti
         .catch((error) => {
           console.error("Error deleting Item:", error);
         });
+
+        setContextMenuIsVisible(false)
     };
 
     useEffect(() => {

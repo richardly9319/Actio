@@ -63,6 +63,7 @@ function TaskGroup({
     }
     setGroupInputPopup({ isVisible: false, label: '' });
     setIsOpen(true);
+    setContextMenuIsVisible(false)
   };
 
   return (
