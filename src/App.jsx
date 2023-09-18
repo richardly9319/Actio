@@ -93,6 +93,7 @@ const logout = () => {
   localStorage.removeItem('userToken');
   localStorage.removeItem('userID');
   setUserID("2");
+  setSidebarOpen(false);
   // Add any additional logout logic here...
 };
 
