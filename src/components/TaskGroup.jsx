@@ -74,7 +74,8 @@ function TaskGroup({
           onClick={() => { setIsOpen(!isOpen) }}
           
         >
-          {groupName}:
+          {groupName}
+          {(isOpen) ? "" : ":"}
         </h2>
       </ContextMenuContainer>
       
