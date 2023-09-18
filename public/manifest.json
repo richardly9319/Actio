@@ -6,6 +6,12 @@
         "src": "/logoIcon2.png",
         "type": "image/png",
         "sizes": "555x555"
+      },
+
+      {
+        "src": "/logoIcon3.png",
+        "type": "image/png",
+        "sizes": "631x662"
       }
       
     ],
