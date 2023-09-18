@@ -146,7 +146,7 @@ const handleAppClick = (e) => {
           className="fixed right-5 top-5 w-7" src={menuIcon} alt="side menu" onClick={toggleSidebar}
         />
         {sidebarOpen && (
-          <SideBar toggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen}/>
+          <SideBar isLoggedIn={isLoggedIn} responseGoogle={responseGoogle} toggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen}/>
         )}
 
           {contextMenuIsVisible && <div className="masking-layer" 
@@ -171,18 +171,9 @@ const handleAppClick = (e) => {
           <Section setContextMenuIsVisible={setContextMenuIsVisible} userData={userData} userID={userID} setUserData={setUserData} sectionTitle="Goals & Objectives" sectionType="goals" sectionItems={userData.goals} sectionDetails={userData.goaldetails} />
           <Section setContextMenuIsVisible={setContextMenuIsVisible} userData={userData} userID={userID} setUserData={setUserData} sectionTitle="Challenges & Obstacles" sectionType="challenges" sectionItems={userData.challenges} sectionDetails={userData.challengedetails} />
         </div>
-        {!isLoggedIn && (
-        <GoogleLogin
-          clientId="307941107777-dch3oqprahp6b0l8ea21aiquilkq7suo.apps.googleusercontent.com"
-          buttonText="Login with Google"
-          onSuccess={responseGoogle}
-          onError={responseGoogle}
-        />
-      )}
+        
 
-          {isLoggedIn && (
-        <button onClick={logout}>Logout</button>
-        )}      
+             
       </div>
     </GoogleOAuthProvider>
   )

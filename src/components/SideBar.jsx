@@ -2,8 +2,9 @@ import React from 'react'
 import menuIcon from '../assets/menuIcon.svg'
 import { motion, AnimatePresence } from "framer-motion"
 import { useEffect, useRef } from 'react'
+import { GoogleLogin } from '@react-oauth/google';
 
-function SideBar({ toggleSidebar, sidebarOpen }) {
+function SideBar({ isLoggedIn, responseGoogle, toggleSidebar, sidebarOpen }) {
 
     const sidebarRef = useRef(null);
 
@@ -40,11 +41,20 @@ function SideBar({ toggleSidebar, sidebarOpen }) {
             <button className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:text-primary-navy hover:font-semibold active:bg-gray-200">Settings</button>
             <button className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:text-primary-navy hover:font-semibold active:bg-gray-200">Download App</button>
             <button className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:text-primary-navy hover:font-semibold active:bg-gray-200">Upgrade to Pro</button>
-            <button onClick={() => {
-                localStorage.removeItem('userID');
-                toggleSidebar();
-                window.location.reload();
-          }} className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:text-primary-navy hover:font-semibold active:bg-gray-200">Logout</button>
+                            
+            {
+                isLoggedIn ? (
+                    <button onClick={logout}>Logout</button>
+                ) : (
+                    <GoogleLogin
+                    clientId="307941107777-dch3oqprahp6b0l8ea21aiquilkq7suo.apps.googleusercontent.com"
+                    buttonText="Login with Google"
+                    onSuccess={responseGoogle}
+                    onError={responseGoogle}
+                    />
+                )
+                }
+            
             <img src={menuIcon} alt="Side Menu" className="absolute right-4 top-4 w-7" onClick={toggleSidebar} />
         </motion.div>
     )
