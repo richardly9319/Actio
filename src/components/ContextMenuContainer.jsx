@@ -20,6 +20,12 @@ const ContextMenuContainer = ({ setContextMenuIsVisible, userID, itemId, handleI
     setContextMenuIsVisible(true); 
   };
 
+  const handleTouchMove = () => {
+    if (longPressTimer.current) {
+      clearTimeout(longPressTimer.current);
+    }
+  };
+
   const handleCloseMenu = () => {
     setIsVisible(false);
     setClickedItemId(null);
@@ -62,6 +68,7 @@ const ContextMenuContainer = ({ setContextMenuIsVisible, userID, itemId, handleI
       onContextMenu={(e) => handleContextMenu(e, menuItems)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
+      onTouchMove={handleTouchMove}
     >
       {children}
       {isVisible && (
