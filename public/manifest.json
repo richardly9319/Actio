@@ -3,7 +3,7 @@
     "name": "Actio App",
     "icons": [
       {
-        "src": "./logoIcon.png",
+        "src": "logoIcon.png",
         "type": "image/png",
         "sizes": "151x141"
       }
