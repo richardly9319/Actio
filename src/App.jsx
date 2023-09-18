@@ -138,7 +138,6 @@ const handleAppClick = (e) => {
           draggable
           pauseOnHover
           theme="light"
-          transition={false}
         />
         <motion.img id="SideBar" 
           initial={{ scale: 1 }} 
