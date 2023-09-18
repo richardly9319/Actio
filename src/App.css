@@ -1,5 +1,4 @@
 .masking-layer {
-  pointer-events: none;
   position: fixed;    /* Fixes the layer relative to the viewport */
   top: 0;
   left: 0;
