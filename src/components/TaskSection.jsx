@@ -95,7 +95,7 @@ function TaskSection( {setContextMenuIsVisible, userID, taskCompleteNotify, sect
 const handleSubmit = () => {
   const value = inputRef.current.value;
   if (inputPopup.label === "Item") {
-      axios.post(`${apiUrl}/${user_id}/tasks`, {"task": {"task_name": value, "user_id": user_id}})
+      axios.post(`${apiUrl}/${user_id}/tasks`, {"task": {"task_name": value, "user_id": user_id, "priority_level": 2, "reoccurance": 0, "due_date": `${new Date(new Date().setDate(new Date().getDate() + 3)).toISOString().slice(0, 10)}`}})
       .then((response) => {
         setIsOpen(true);
           setTasksData(prevData => ({

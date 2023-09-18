@@ -4,6 +4,7 @@ import Modal from './Modal';
 import DetailList from './DetailList';
 import axios from 'axios';
 import { motion, AnimatePresence } from "framer-motion"
+import arrowIcon from "../assets/arrowIcon.svg"
 
 function Task({ taskGroup, userID, handleTaskDetailAdd, taskCompleteNotify, handleTaskDelete, task, taskdetails }) {
   
@@ -59,7 +60,7 @@ function Task({ taskGroup, userID, handleTaskDetailAdd, taskCompleteNotify, hand
       </ReactModal>
         
       <li 
-        className={`${((details.length === 0) || isOpen) ? 'text-black' : 'text-primary-navy'} flex w-fit md:cursor-pointer text-black mt-1 md:mt-0 text-lg md:text-base md:leading-relaxed`} 
+        className={`items-center flex w-fit md:cursor-pointer text-black mt-1 md:mt-0 text-lg md:text-base md:leading-relaxed`} 
         onTouchStart={handleTouchStart} // Add touch start handler
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}     // Add touch end handler
@@ -81,6 +82,7 @@ function Task({ taskGroup, userID, handleTaskDetailAdd, taskCompleteNotify, hand
           〇
         </div> 
         {task.task_name}
+        {((details.length === 0) || isOpen) ? <></> : " ·"}
       </li>
     
       {(isOpen) ? 
