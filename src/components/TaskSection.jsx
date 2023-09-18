@@ -64,6 +64,8 @@ function TaskSection( {setContextMenuIsVisible, userID, taskCompleteNotify, sect
         .catch((error) => {
           console.error("Error deleting Task Group:", error);
         });
+
+        setContextMenuIsVisible(false);
     };
 
     const handleTaskDetailAdd = (taskId, newTaskDetail) => {
