@@ -97,7 +97,6 @@ const logout = () => {
 const handleAppClick = (e) => {
   if (contextMenuIsVisible && !e.target.closest('.context-menu')) {
     setContextMenuIsVisible(false)
-    e.stopPropagation(); // This stops the event from further propagation
   }
 };
 

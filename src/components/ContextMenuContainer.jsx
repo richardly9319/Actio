@@ -17,6 +17,7 @@ const ContextMenuContainer = ({ setContextMenuIsVisible, userID, itemId, handleI
     setMenuItems(items);
     setPosition({ top: e.clientY, left: e.clientX });
     setIsVisible(true);
+    setContextMenuIsVisible(true); 
   };
 
   const handleCloseMenu = () => {
