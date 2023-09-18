@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useEffect, useRef } from 'react'
 import { GoogleLogin } from '@react-oauth/google';
 
-function SideBar({ isLoggedIn, responseGoogle, toggleSidebar, sidebarOpen }) {
+function SideBar({ logout, isLoggedIn, responseGoogle, toggleSidebar, sidebarOpen }) {
 
     const sidebarRef = useRef(null);
 

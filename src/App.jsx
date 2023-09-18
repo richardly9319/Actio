@@ -146,7 +146,7 @@ const handleAppClick = (e) => {
           className="fixed right-5 top-5 w-7" src={menuIcon} alt="side menu" onClick={toggleSidebar}
         />
         {sidebarOpen && (
-          <SideBar isLoggedIn={isLoggedIn} responseGoogle={responseGoogle} toggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen}/>
+          <SideBar logout={logout} isLoggedIn={isLoggedIn} responseGoogle={responseGoogle} toggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen}/>
         )}
 
           {contextMenuIsVisible && <div className="masking-layer" 
