@@ -74,7 +74,7 @@ function SideBar({ logout, isLoggedIn, responseGoogle, toggleSidebar, sidebarOpe
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.15 }}
         >
-            <button className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:text-primary-navy hover:font-semibold active:bg-gray-200">Dark Theme</button>
+            <button className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:text-primary-navy hover:font-semibold active:bg-gray-200">Dark Mode</button>
             <button className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:text-primary-navy hover:font-semibold active:bg-gray-200">Settings</button>
             <button className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:text-primary-navy hover:font-semibold active:bg-gray-200">Upgrade to Pro</button>
             <br />
