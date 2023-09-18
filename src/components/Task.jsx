@@ -31,6 +31,12 @@ function Task({ taskGroup, userID, handleTaskDetailAdd, taskCompleteNotify, hand
     }, 490);
   };
 
+  const handleTouchMove = () => {
+    if (longPressTimer.current) {
+      clearTimeout(longPressTimer.current);
+    }
+  };
+
   // Handle the end of a touch event
   const handleTouchEnd = () => {
     clearTimeout(longPressTimer.current);
@@ -52,6 +58,7 @@ function Task({ taskGroup, userID, handleTaskDetailAdd, taskCompleteNotify, hand
       <li 
         className="flex w-fit md:cursor-pointer text-black mt-1 md:mt-0 text-lg md:text-base md:leading-relaxed" 
         onTouchStart={handleTouchStart} // Add touch start handler
+        onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}     // Add touch end handler
         onContextMenu={(e) => {
           e.preventDefault();
