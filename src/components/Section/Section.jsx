@@ -15,6 +15,7 @@ function Section( {setContextMenuIsVisible, userID, userData, setUserData, secti
 
     const showInputField = (label) => {
       setInputPopup({ isVisible: true, label });
+      setIsOpen(true);
     };
 
     const contextMenuItems = [
