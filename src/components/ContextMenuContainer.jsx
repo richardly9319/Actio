@@ -47,7 +47,7 @@ const ContextMenuContainer = ({ setContextMenuIsVisible, userID, itemId, handleI
     e.preventDefault();
     longPressTimer.current = setTimeout(() => {
       handleContextMenu(e, menuItems);
-    }, 500);
+    }, 475);
   };
 
   const handleTouchEnd = () => {
