@@ -98,7 +98,9 @@ function Section( {setContextMenuIsVisible, userID, userData, setUserData, secti
         <h2 
         className="mb-1 md:cursor-pointer text-2xl md:text-lg font-semibold text-black" 
         onClick={() => {setIsOpen(!isOpen)}}
-        >{sectionTitle}</h2>
+        >{sectionTitle}
+        {!isOpen && ":"}
+        </h2>
         </ContextMenuContainer>
 
         <AnimatePresence>

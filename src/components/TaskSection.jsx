@@ -190,6 +190,7 @@ const handleSubmit = () => {
         }}
         
         >{sectionTitle}
+        {!isOpen && ":"}
         
         </h2>
         </ContextMenuContainer>

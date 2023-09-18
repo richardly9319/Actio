@@ -75,7 +75,7 @@ function TaskGroup({
           
         >
           {groupName}
-          {(isOpen) ? "" : ":"}
+          {!isOpen && ":"}
         </h2>
       </ContextMenuContainer>
       
