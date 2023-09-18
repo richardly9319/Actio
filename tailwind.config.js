@@ -9,7 +9,7 @@ export default {
       colors: {
         "primary-navy": "#002855",
         "primary-orange": "#e3a112",
-        "secondary-navy": "#15538a",
+        "secondary-navy": "#0f5491",
         "primary-grey": "#333333",
         "background-grey": "#F8F8F8"
       }
