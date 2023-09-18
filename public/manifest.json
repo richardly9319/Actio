@@ -1,11 +1,11 @@
 {
     "short_name": "Actio",
-    "name": "Actio App",
+    "name": "Richard Ly's Actio App",
     "icons": [
       {
-        "src": "/logoIcon.png",
+        "src": "/logoIcon2.png",
         "type": "image/png",
-        "sizes": "151x141"
+        "sizes": "555x555"
       }
       
     ],
