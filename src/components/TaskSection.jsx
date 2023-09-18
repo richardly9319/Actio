@@ -5,7 +5,7 @@ import ContextMenuContainer from "./ContextMenuContainer"
 import { useRef } from 'react';
 import { motion, AnimatePresence } from "framer-motion"
 
-function TaskSection( {userID, taskCompleteNotify, sectionTitle} ) {
+function TaskSection( {setContextMenuIsVisible, userID, taskCompleteNotify, sectionTitle} ) {
 
     const apiUrl = import.meta.env.VITE_API_URL;
     const user_id = userID;
@@ -178,7 +178,7 @@ const handleSubmit = () => {
     // }
     // transition={{ duration: 1 }}
     >
-      <ContextMenuContainer userID={userID} items={contextMenuItems} showInputField={showInputField}>
+      <ContextMenuContainer setContextMenuIsVisible={setContextMenuIsVisible} userID={userID} items={contextMenuItems} showInputField={showInputField}>
         <h2 className="md:cursor-pointer text-2xl md:text-lg font-semibold text-black" 
         onClick={() => {
           setIsOpen(!isOpen);
@@ -200,7 +200,7 @@ const handleSubmit = () => {
     transition={{ duration: 0.2 }}
     style={{ transformOrigin: 'top' }} 
             >
-            <TaskList inputPopup={inputPopup} inputRef={inputRef} handleKeyDown={handleKeyDown} userID={userID} handleTaskDetailAdd={handleTaskDetailAdd} taskCompleteNotify={taskCompleteNotify} setGroupInputPopup={setGroupInputPopup} setTasksData={setTasksData} groupInputPopup={groupInputPopup} handleTaskGroupDelete={handleTaskGroupDelete} showGroupInputField={showGroupInputField} contextMenuItems_TaskGroup={contextMenuItems_TaskGroup} handleTaskDelete={handleTaskDelete} taskgroups={tasksData.taskgroups} tasks={tasksData.tasks} taskdetails={tasksData.tasksdetails} />
+            <TaskList setContextMenuIsVisible={setContextMenuIsVisible} inputPopup={inputPopup} inputRef={inputRef} handleKeyDown={handleKeyDown} userID={userID} handleTaskDetailAdd={handleTaskDetailAdd} taskCompleteNotify={taskCompleteNotify} setGroupInputPopup={setGroupInputPopup} setTasksData={setTasksData} groupInputPopup={groupInputPopup} handleTaskGroupDelete={handleTaskGroupDelete} showGroupInputField={showGroupInputField} contextMenuItems_TaskGroup={contextMenuItems_TaskGroup} handleTaskDelete={handleTaskDelete} taskgroups={tasksData.taskgroups} tasks={tasksData.tasks} taskdetails={tasksData.tasksdetails} />
             </motion.div>
             : <TaskList inputPopup={inputPopup} inputRef={inputRef} handleKeyDown={handleKeyDown} userID={userID} handleTaskDetailAdd={handleTaskDetailAdd} taskCompleteNotify={taskCompleteNotify} setGroupInputPopup={setGroupInputPopup} setTasksData={setTasksData} groupInputPopup={groupInputPopup} handleTaskGroupDelete={handleTaskGroupDelete} showGroupInputField={showGroupInputField} contextMenuItems_TaskGroup={contextMenuItems_TaskGroup} handleTaskDelete={handleTaskDelete} />
         }

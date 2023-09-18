@@ -6,7 +6,7 @@ import axios from "axios";
 
 import ContextMenuContainer from "../ContextMenuContainer";
 
-function Section( {userID, userData, setUserData, sectionTitle, sectionItems, sectionDetails, sectionType} ) {
+function Section( {setContextMenuIsVisible, userID, userData, setUserData, sectionTitle, sectionItems, sectionDetails, sectionType} ) {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -88,7 +88,7 @@ function Section( {userID, userData, setUserData, sectionTitle, sectionItems, se
 
   return (
     <div className="pt-4 px-2 mr-4 ml-2 pb-4 md:pl-0 border-t-2 border-primary-navy/8 border-groove md:border-0">
-        <ContextMenuContainer userID={userID} items={contextMenuItems} showInputField={showInputField}>
+        <ContextMenuContainer setContextMenuIsVisible={setContextMenuIsVisible} userID={userID} items={contextMenuItems} showInputField={showInputField}>
         <h2 
         className="md:cursor-pointer text-2xl md:text-lg font-semibold text-black" 
         onClick={() => {setIsOpen(!isOpen)}}
@@ -103,7 +103,7 @@ function Section( {userID, userData, setUserData, sectionTitle, sectionItems, se
             transition={{ duration: 0.2 }}
             style={{ transformOrigin: 'top' }} 
             >
-            <ItemList userData={userData} handleSubmit={handleSubmit} setInputPopup={setInputPopup} inputRef={inputRef} inputPopup={inputPopup} userID={userID} handleItemDelete={handleItemDelete} setUserData={setUserData} sectionType={sectionType} sectionItems={sectionItems} sectionDetails={sectionDetails} />
+            <ItemList setContextMenuIsVisible={setContextMenuIsVisible} userData={userData} handleSubmit={handleSubmit} setInputPopup={setInputPopup} inputRef={inputRef} inputPopup={inputPopup} userID={userID} handleItemDelete={handleItemDelete} setUserData={setUserData} sectionType={sectionType} sectionItems={sectionItems} sectionDetails={sectionDetails} />
             </motion.div>
             : null
         }

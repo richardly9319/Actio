@@ -3,7 +3,7 @@ import Task from "./Task";
 import TaskGroup from "./TaskGroup";
 import { motion, AnimatePresence } from "framer-motion"
 
-function TaskList( {handleKeyDown, inputRef, inputPopup, userID, handleTaskDetailAdd, taskCompleteNotify, setGroupInputPopup, setTasksData, groupInputPopup, handleTaskGroupDelete, showGroupInputField, taskgroups, tasks, taskdetails, handleTaskDelete, contextMenuItems_TaskGroup} ) {
+function TaskList( {setContextMenuIsVisible, handleKeyDown, inputRef, inputPopup, userID, handleTaskDetailAdd, taskCompleteNotify, setGroupInputPopup, setTasksData, groupInputPopup, handleTaskGroupDelete, showGroupInputField, taskgroups, tasks, taskdetails, handleTaskDelete, contextMenuItems_TaskGroup} ) {
 
   return (
     <ul className="ml-4">
@@ -36,7 +36,7 @@ function TaskList( {handleKeyDown, inputRef, inputPopup, userID, handleTaskDetai
 
         <div className="mt-1">
         {taskgroups?.map((taskgroup, index) => {
-            return <TaskGroup userID={userID} handleTaskDetailAdd={handleTaskDetailAdd} taskCompleteNotify={taskCompleteNotify} setGroupInputPopup={setGroupInputPopup} setTasksData={setTasksData} groupInputPopup={groupInputPopup} handleTaskGroupDelete={handleTaskGroupDelete} showGroupInputField={showGroupInputField} contextMenuItems_TaskGroup={contextMenuItems_TaskGroup} handleTaskDelete={handleTaskDelete} groupID={taskgroup.id} groupName={taskgroup.taskgroup_name} tasks={tasks?.filter((task) => {
+            return <TaskGroup setContextMenuIsVisible={setContextMenuIsVisible} userID={userID} handleTaskDetailAdd={handleTaskDetailAdd} taskCompleteNotify={taskCompleteNotify} setGroupInputPopup={setGroupInputPopup} setTasksData={setTasksData} groupInputPopup={groupInputPopup} handleTaskGroupDelete={handleTaskGroupDelete} showGroupInputField={showGroupInputField} contextMenuItems_TaskGroup={contextMenuItems_TaskGroup} handleTaskDelete={handleTaskDelete} groupID={taskgroup.id} groupName={taskgroup.taskgroup_name} tasks={tasks?.filter((task) => {
               return taskgroup.id == task.taskgroup_id
             })} key={index} taskdetails={taskdetails}/>
         })}

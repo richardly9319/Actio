@@ -29,6 +29,8 @@ export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [token, setToken] = useState(null);
   const [googleUserId, setGoogleUserId] = useState(null); // This will store the user's Google ID
+  const [contextMenuIsVisible, setContextMenuIsVisible] = useState(false);
+
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -92,6 +94,13 @@ const logout = () => {
   // Add any additional logout logic here...
 };
 
+const handleAppClick = (e) => {
+  if (contextMenuIsVisible && !e.target.closest('.context-menu')) {
+    closeContextMenu();
+    e.stopPropagation(); // This stops the event from further propagation
+  }
+};
+
 
   useEffect(() => {
     const storedToken = localStorage.getItem('userToken');
@@ -113,9 +122,12 @@ const logout = () => {
 
   return (
     <GoogleOAuthProvider clientId="307941107777-dch3oqprahp6b0l8ea21aiquilkq7suo.apps.googleusercontent.com">
-      <div className="select-none md:pt-8 flex flex-col md:flex-row min-h-screen w-screen" onContextMenu={(e) => {
+      <div className="select-none md:pt-8 flex flex-col md:flex-row min-h-screen w-screen" 
+      onContextMenu={(e) => {
         e.preventDefault();
-      }}>
+      }}
+      onClick={handleAppClick}
+      >
         <ToastContainer
           position="top-center"
           autoClose={500}
@@ -137,11 +149,11 @@ const logout = () => {
           <SideBar toggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen}/>
         )}
         <div className="w-full md:w-1/2 md:ml-24">
-          {userID && <TaskSection userID={userID} taskCompleteNotify={taskCompleteNotify} sectionTitle="Action Items" />}
+          {userID && <TaskSection setContextMenuIsVisible={setContextMenuIsVisible} userID={userID} taskCompleteNotify={taskCompleteNotify} sectionTitle="Action Items" />}
         </div>
         <div className="w-full md:w-1/2 mb-8 md:ml-2 mr-8 pl-3 pt-2 pb-2">
-          <Section userData={userData} userID={userID} setUserData={setUserData} sectionTitle="Goals & Objectives" sectionType="goals" sectionItems={userData.goals} sectionDetails={userData.goaldetails} />
-          <Section userData={userData} userID={userID} setUserData={setUserData} sectionTitle="Challenges & Obstacles" sectionType="challenges" sectionItems={userData.challenges} sectionDetails={userData.challengedetails} />
+          <Section setContextMenuIsVisible={setContextMenuIsVisible} userData={userData} userID={userID} setUserData={setUserData} sectionTitle="Goals & Objectives" sectionType="goals" sectionItems={userData.goals} sectionDetails={userData.goaldetails} />
+          <Section setContextMenuIsVisible={setContextMenuIsVisible} userData={userData} userID={userID} setUserData={setUserData} sectionTitle="Challenges & Obstacles" sectionType="challenges" sectionItems={userData.challenges} sectionDetails={userData.challengedetails} />
         </div>
         {!isLoggedIn && (
         <GoogleLogin

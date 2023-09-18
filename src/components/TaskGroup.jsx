@@ -8,7 +8,7 @@ import { useRef } from 'react';
 import axios from "axios";
 
 function TaskGroup({
-  userID, handleTaskDetailAdd, taskCompleteNotify, setGroupInputPopup,
+  setContextMenuIsVisible, userID, handleTaskDetailAdd, taskCompleteNotify, setGroupInputPopup,
   setTasksData, groupInputPopup, groupID, handleTaskGroupDelete, showGroupInputField,
   handleTaskDelete, groupName, tasks, taskdetails, contextMenuItems_TaskGroup
 }) {
@@ -67,7 +67,7 @@ function TaskGroup({
 
   return (
     <div>
-      <ContextMenuContainer userID={userID} groupID={groupID} handleTaskGroupDelete={handleTaskGroupDelete} items={contextMenuItems_TaskGroup} showGroupInputField={showGroupInputField}>
+      <ContextMenuContainer setContextMenuIsVisible={setContextMenuIsVisible} userID={userID} groupID={groupID} handleTaskGroupDelete={handleTaskGroupDelete} items={contextMenuItems_TaskGroup} showGroupInputField={showGroupInputField}>
         <h2 
           className="text-primary-orange md:cursor-pointer font-medium mt-1 text-lg md:text-base" 
           onClick={() => { setIsOpen(!isOpen) }}

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-const ContextMenu = ({ items, onClose, onClick }) => {
+const ContextMenu = ({ setContextMenuIsVisible, items, onClose, onClick }) => {
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -8,6 +8,7 @@ const ContextMenu = ({ items, onClose, onClick }) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         event.stopPropagation();
         onClose();
+        setContextMenuIsVisible(false);
       }
     };
 
