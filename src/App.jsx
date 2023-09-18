@@ -126,7 +126,7 @@ const handleAppClick = (e) => {
       onContextMenu={(e) => {
         e.preventDefault();
       }}
-      // onClick={handleAppClick}
+      onClick={handleAppClick}
       >
         <ToastContainer
           position="top-center"
@@ -148,6 +148,14 @@ const handleAppClick = (e) => {
         {sidebarOpen && (
           <SideBar toggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen}/>
         )}
+
+          {contextMenuIsVisible && <div className="masking-layer" onClick={(e) => {
+            setContextMenuIsVisible(false);
+            e.stopPropagation();
+
+            
+            }}></div>}
+
         <div className="w-full md:w-1/2 md:ml-24">
           {userID && <TaskSection setContextMenuIsVisible={setContextMenuIsVisible} userID={userID} taskCompleteNotify={taskCompleteNotify} sectionTitle="Action Items" />}
         </div>

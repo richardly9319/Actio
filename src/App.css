@@ -1,6 +1,12 @@
-/* * {
-  line-height: 90%;
-} */
+.masking-layer {
+  position: fixed;    /* Fixes the layer relative to the viewport */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  z-index: 1000;      /* High z-index to ensure it's above other elements */
+}
 
 button {
   -webkit-tap-highlight-color: transparent;
