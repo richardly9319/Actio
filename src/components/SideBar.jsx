@@ -1,12 +1,33 @@
 import React from 'react'
 import menuIcon from '../assets/menuIcon.svg'
 import { motion, AnimatePresence } from "framer-motion"
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { GoogleLogin } from '@react-oauth/google';
 
 function SideBar({ logout, isLoggedIn, responseGoogle, toggleSidebar, sidebarOpen }) {
 
+    const [showInstallButton, setShowInstallButton] = useState(false);
+
+    let deferredPrompt;
+
     const sidebarRef = useRef(null);
+
+    const onInstallButtonClick = () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                } else {
+                    console.log('User dismissed the install prompt');
+                }
+                deferredPrompt = null;
+                setShowInstallButton(false);
+            });
+        }
+    };
+    
+    
 
     useEffect(() => {
         function handleOutsideClick(event) {
@@ -27,6 +48,22 @@ function SideBar({ logout, isLoggedIn, responseGoogle, toggleSidebar, sidebarOpe
         };
     }, [sidebarOpen, toggleSidebar]);
 
+    useEffect(() => {
+    
+        const beforeInstallPromptHandler = (event) => {
+            event.preventDefault();
+            deferredPrompt = event;
+            setShowInstallButton(true);
+        };
+    
+        window.addEventListener('beforeinstallprompt', beforeInstallPromptHandler);
+    
+        return () => {
+            window.removeEventListener('beforeinstallprompt', beforeInstallPromptHandler);
+        };
+    }, []);
+    
+
     return (
         <motion.div
             ref={sidebarRef}
@@ -41,7 +78,16 @@ function SideBar({ logout, isLoggedIn, responseGoogle, toggleSidebar, sidebarOpe
             <button className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:text-primary-navy hover:font-semibold active:bg-gray-200">Settings</button>
             <button className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:text-primary-navy hover:font-semibold active:bg-gray-200">Upgrade to Pro</button>
             <br />
-            <button id="btnAdd" className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:text-primary-navy hover:font-semibold active:bg-gray-200">Download App</button>
+            {
+    showInstallButton &&
+    <button 
+        id="btnAdd" 
+        className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:text-primary-navy hover:font-semibold active:bg-gray-200"
+        onClick={onInstallButtonClick}>
+        Download App
+    </button>
+}
+
             <br />   
             {
                 isLoggedIn ? (
