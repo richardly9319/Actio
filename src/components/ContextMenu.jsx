@@ -15,6 +15,7 @@ const ContextMenu = ({ setContextMenuIsVisible, items, onClose, onClick }) => {
     };
 
     const handleTouchStart = (event) => {
+      event.preventDefault();
       touchEventFired = true;
       handleClickOutside(event);
     };
