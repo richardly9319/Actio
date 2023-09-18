@@ -82,7 +82,7 @@ function Task({ taskGroup, userID, handleTaskDetailAdd, taskCompleteNotify, hand
           〇
         </div> 
         {task.task_name}
-        {((details.length === 0) || isOpen) ? <></> : " ‣"}
+        {((details.length === 0) || isOpen) ? <></> : " ·"}
       </li>
     
       {(isOpen) ? 
