@@ -44,7 +44,7 @@ function SideBar({ logout, isLoggedIn, responseGoogle, toggleSidebar, sidebarOpe
                             
             {
                 isLoggedIn ? (
-                    <button onClick={logout}>Logout</button>
+                    <button className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:text-primary-navy hover:font-semibold active:bg-gray-200" onClick={logout}>Logout</button>
                 ) : (
                     <GoogleLogin
                     clientId="307941107777-dch3oqprahp6b0l8ea21aiquilkq7suo.apps.googleusercontent.com"
