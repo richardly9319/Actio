@@ -13,11 +13,11 @@ const ContextMenu = ({ setContextMenuIsVisible, items, onClose, onClick }) => {
     };
 
     // Attach the click event listener
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
 
     // Clean up the event listener on component unmount
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
     };
   }, [onClose]);
 

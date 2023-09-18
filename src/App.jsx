@@ -126,7 +126,7 @@ const handleAppClick = (e) => {
       onContextMenu={(e) => {
         e.preventDefault();
       }}
-      onClick={handleAppClick}
+      // onClick={handleAppClick}
       >
         <ToastContainer
           position="top-center"
