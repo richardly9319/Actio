@@ -136,7 +136,7 @@ const handleAppClick = (e) => {
           rtl={false}
           theme="light"
         />
-        
+
         <motion.img id="SideBar" 
           initial={{ scale: 1 }} 
           whileHover={{ scale: 1.1 }}
@@ -146,12 +146,20 @@ const handleAppClick = (e) => {
           <SideBar toggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen}/>
         )}
 
-          {contextMenuIsVisible && <div className="masking-layer" onClick={(e) => {
+          {contextMenuIsVisible && <div className="masking-layer" 
+          onClick={(e) => {
             setContextMenuIsVisible(false);
             e.stopPropagation();
-
             
-            }}></div>}
+            }
+            
+            }
+            onTouchStart={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+           }}
+            
+            ></div>}
 
         <div className="w-full md:w-1/2 md:ml-24">
           {userID && <TaskSection setContextMenuIsVisible={setContextMenuIsVisible} userID={userID} taskCompleteNotify={taskCompleteNotify} sectionTitle="Action Items" />}
