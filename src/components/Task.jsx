@@ -42,6 +42,9 @@ function Task({ taskGroup, userID, handleTaskDetailAdd, taskCompleteNotify, hand
     clearTimeout(longPressTimer.current);
   };
 
+  const details = taskdetails?.filter((taskdetail) => taskdetail.task_id == task.id);
+
+
   return (
     <div>
       <ReactModal appElement={document.getElementById('root')} isOpen={isModalOpen} onRequestClose={closeModal}>
@@ -56,7 +59,7 @@ function Task({ taskGroup, userID, handleTaskDetailAdd, taskCompleteNotify, hand
       </ReactModal>
         
       <li 
-        className="flex w-fit md:cursor-pointer text-black mt-1 md:mt-0 text-lg md:text-base md:leading-relaxed" 
+        className={`${((details.length === 0) || isOpen) ? 'text-black' : 'text-primary-navy'} flex w-fit md:cursor-pointer text-black mt-1 md:mt-0 text-lg md:text-base md:leading-relaxed`} 
         onTouchStart={handleTouchStart} // Add touch start handler
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}     // Add touch end handler
@@ -81,9 +84,7 @@ function Task({ taskGroup, userID, handleTaskDetailAdd, taskCompleteNotify, hand
       </li>
     
       {(isOpen) ? 
-        <DetailList details={taskdetails?.filter((taskdetail) => {
-          return taskdetail.task_id == task.id
-        })}/> : <></>
+        <DetailList details={details}/> : <></>
       }
     </div>
   )
