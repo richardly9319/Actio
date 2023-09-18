@@ -174,7 +174,7 @@ const handleSubmit = () => {
 
   return (
     <motion.div 
-    className="mx-4 mt-2 pl-1 pr-0 md:pl-3 pt-4 md:pt-2 pb-4 md:mt-2"
+    className="mx-4 mt-2 pl-1 pr-0 md:pl-3 pt-2 md:pt-2 pb-4 md:mt-2"
     // animate={
     //   isOpen ? {
     //     backgroundImage: "linear-gradient(to right, rgba(211, 211, 211, 0.2), white)"}
