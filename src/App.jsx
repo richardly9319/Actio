@@ -134,11 +134,9 @@ const handleAppClick = (e) => {
           newestOnTop={false}
           closeOnClick
           rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
           theme="light"
         />
+        
         <motion.img id="SideBar" 
           initial={{ scale: 1 }} 
           whileHover={{ scale: 1.1 }}

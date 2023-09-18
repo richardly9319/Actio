@@ -12,8 +12,8 @@ const ContextMenu = ({ setContextMenuIsVisible, items, onClose, onClick }) => {
     };
 
     // Attach the event listeners
-    document.addEventListener('touchstart', handleClickOutside, { passive: true });
-    document.addEventListener('mousedown', handleClickOutside, { passive: true });
+    document.addEventListener('touchstart', handleClickOutside, { passive: false });
+    document.addEventListener('mousedown', handleClickOutside, { passive: false });
 
     // Clean up the event listeners on component unmount
     return () => {
