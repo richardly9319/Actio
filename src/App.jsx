@@ -72,6 +72,8 @@ export default function App() {
               setGoogleUserId(serverResponse.data.user.googleUserId); // Assuming this is where the Google user ID is
               setUserID(serverResponse.data.user.id); // Set the user's ID from the database
               setIsLoggedIn(true);
+              setSidebarOpen(false)
+
               localStorage.setItem('userToken', serverResponse.data.token);
               localStorage.setItem('userID', serverResponse.data.user.id);
               toast.success("Logged in successfully!");
@@ -94,6 +96,7 @@ const logout = () => {
   localStorage.removeItem('userID');
   setUserID("2");
   setSidebarOpen(false);
+  toast.success("Logged out");
   // Add any additional logout logic here...
 };
 
