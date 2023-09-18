@@ -42,7 +42,7 @@ function SideBar({ logout, isLoggedIn, responseGoogle, toggleSidebar, sidebarOpe
             <button className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:text-primary-navy hover:font-semibold active:bg-gray-200">Upgrade to Pro</button>
             <br />
             <button id="btnAdd" className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:text-primary-navy hover:font-semibold active:bg-gray-200">Download App</button>
-                            
+            <br />   
             {
                 isLoggedIn ? (
                     <button className="text-xl md:text-base block p-2 rounded md:cursor-pointer hover:text-primary-navy hover:font-semibold active:bg-gray-200" onClick={logout}>Logout</button>
