@@ -12,7 +12,7 @@ function Section( {setContextMenuIsVisible, userID, userData, setUserData, secti
     const [isOpen, setIsOpen] = useState(false);
 
     const addItemSound = new Audio(addItem);
-    addItemSound.volume = 0.20;
+    addItemSound.volume = 0.50;
   
 
 
