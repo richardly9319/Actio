@@ -4,7 +4,7 @@ import axios from "axios";
 import ContextMenuContainer from "./ContextMenuContainer"
 import { useRef } from 'react';
 import { motion, AnimatePresence } from "framer-motion"
-import pulse from '../assets/pulse.mp3';
+import taskAddSound from '../assets/ui_tap-variant-02.mp3';
 
 function TaskSection( {setContextMenuIsVisible, userID, taskCompleteNotify, sectionTitle} ) {
 
@@ -13,8 +13,8 @@ function TaskSection( {setContextMenuIsVisible, userID, taskCompleteNotify, sect
 
     const inputRef = useRef();
 
-    const addItemSound = new Audio(pulse);
-    addItemSound.volume = 0.20;
+    const addItemSound = new Audio(taskAddSound);
+    addItemSound.volume = 0.50;
 
   
 

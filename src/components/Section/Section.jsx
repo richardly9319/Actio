@@ -3,12 +3,17 @@ import ItemList from "../ItemList";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRef } from 'react';
 import axios from "axios";
+import addItem from '../../assets/ui_tap-variant-02.mp3';
 
 import ContextMenuContainer from "../ContextMenuContainer";
 
 function Section( {setContextMenuIsVisible, userID, userData, setUserData, sectionTitle, sectionItems, sectionDetails, sectionType} ) {
 
     const [isOpen, setIsOpen] = useState(false);
+
+    const addItemSound = new Audio(addItem);
+    addItemSound.volume = 0.20;
+  
 
 
     const [inputPopup, setInputPopup] = useState({ isVisible: false, label: '' });
@@ -28,6 +33,7 @@ function Section( {setContextMenuIsVisible, userID, userData, setUserData, secti
     const user_id = userID;
 
     const handleSubmit = () => {
+      addItemSound.play()
       const value = inputRef.current.value;
 
                 
