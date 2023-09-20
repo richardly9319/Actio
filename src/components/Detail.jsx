@@ -4,7 +4,7 @@ import ContextMenuContainer from "./ContextMenuContainer";
 
 
 
-function Detail( {setContextMenuIsVisible, detailId, itemId, handleDetailDelete, userID, detailText} ) {
+function Detail( {handleTaskDetailDelete, isTask, setContextMenuIsVisible, detailId, itemId, handleDetailDelete, userID, detailText} ) {
 
 
   const contextMenuItems = [
@@ -14,7 +14,7 @@ function Detail( {setContextMenuIsVisible, detailId, itemId, handleDetailDelete,
  
   return (
     <div>
-      <ContextMenuContainer detailId={detailId} handleDetailDelete={handleDetailDelete} setContextMenuIsVisible={setContextMenuIsVisible} userID={userID} itemId={itemId} items={contextMenuItems}>
+      <ContextMenuContainer handleTaskDetailDelete={handleTaskDetailDelete} isTask={isTask} detailId={detailId} handleDetailDelete={handleDetailDelete} setContextMenuIsVisible={setContextMenuIsVisible} userID={userID} itemId={itemId} items={contextMenuItems}>
     <li className="inline-block ml-1 md:text-sm" >• {detailText}</li>
     </ContextMenuContainer>
     </div>

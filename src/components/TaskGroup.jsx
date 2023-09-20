@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useRef } from 'react';
 import axios from "axios";
 
-function TaskGroup({
+function TaskGroup({handleTaskDetailDelete,
   setContextMenuIsVisible, userID, handleTaskDetailAdd, taskCompleteNotify, setGroupInputPopup,
   setTasksData, groupInputPopup, groupID, handleTaskGroupDelete, showGroupInputField,
   handleTaskDelete, groupName, tasks, taskdetails, contextMenuItems_TaskGroup
@@ -92,7 +92,7 @@ function TaskGroup({
             <ul className="ml-4">
               {tasks?.map((task, index) => {
                 return (
-                  <Task 
+                <Task setContextMenuIsVisible={setContextMenuIsVisible} handleTaskDetailDelete={handleTaskDetailDelete}
                     taskGroup={groupName}
                     userID={userID} 
                     handleTaskDetailAdd={handleTaskDetailAdd} 

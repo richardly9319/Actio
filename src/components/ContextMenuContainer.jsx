@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import ContextMenu from './ContextMenu';
 import axios from 'axios';
 
-const ContextMenuContainer = ({ detailId, handleDetailDelete, setContextMenuIsVisible, userID, itemId, handleItemDelete, groupID, children, items, showInputField, showGroupInputField, handleTaskGroupDelete }) => {
+const ContextMenuContainer = ({ handleTaskDetailDelete, isTask, detailId, handleDetailDelete, setContextMenuIsVisible, userID, itemId, handleItemDelete, groupID, children, items, showInputField, showGroupInputField, handleTaskGroupDelete }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const [menuItems, setMenuItems] = useState([]);
@@ -47,7 +47,11 @@ const ContextMenuContainer = ({ detailId, handleDetailDelete, setContextMenuIsVi
       } else if (action === "delete_item") {
         handleItemDelete(itemId);
       } else if (action === "delete_note") {
-        handleDetailDelete(itemId, detailId);
+        if (isTask) {
+          handleTaskDetailDelete(itemId, detailId)
+        } else {
+          handleDetailDelete(itemId, detailId);
+        }
       }
   };
 

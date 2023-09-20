@@ -95,7 +95,7 @@ function Item({ handleDetailDelete, setContextMenuIsVisible, userData, userID, h
             {/* </AnimatePresence> */}
 
             {inputPopup.isVisible && (
-                <motion.div
+                <motion.div className='ml-4'
                 initial={{ opacity: 0 }} 
                 animate={{ opacity: 1 }} 
                 exit={{ opacity: 0 }}

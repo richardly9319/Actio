@@ -6,13 +6,15 @@ import axios from 'axios';
 import { motion, AnimatePresence } from "framer-motion"
 import arrowIcon from "../assets/arrowIcon.svg"
 
-function Task({ taskGroup, userID, handleTaskDetailAdd, taskCompleteNotify, handleTaskDelete, task, taskdetails }) {
+function Task({ setContextMenuIsVisible, handleTaskDetailDelete, taskGroup, userID, handleTaskDetailAdd, taskCompleteNotify, handleTaskDelete, task, taskdetails }) {
   
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   
   const apiUrl = import.meta.env.VITE_API_URL;
   const user_id = userID;
+
+  
 
   let longPressTimer = useRef(null); // Use useRef for the timer
 
@@ -86,7 +88,7 @@ function Task({ taskGroup, userID, handleTaskDetailAdd, taskCompleteNotify, hand
       </li>
     
       {(isOpen) ? 
-        <DetailList details={details}/> : <></>
+        <DetailList setContextMenuIsVisible={setContextMenuIsVisible} itemId={task.id} handleTaskDetailDelete={handleTaskDetailDelete} isTask={true} details={details}/> : <></>
       }
     </div>
   )

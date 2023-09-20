@@ -89,6 +89,30 @@ function TaskSection( {setContextMenuIsVisible, userID, taskCompleteNotify, sect
           });
   };
 
+  const handleTaskDetailDelete = (taskId, taskDetailId) => {
+    axios
+        .delete(`${apiUrl}/${user_id}/tasks/${taskId}/${taskDetailId}`)
+        .then(() => {
+            // After successful deletion, update local tasksData state
+            setTasksData((prevData) => {
+                // Filter out the deleted task detail from tasksdetails array
+                const updatedTaskDetails = prevData.tasksdetails?.filter((detail) => detail.id !== taskDetailId);
+                
+                return {
+                    ...prevData,
+                    tasksdetails: updatedTaskDetails
+                };
+            });
+
+            // Optionally, you can hide the context menu if required
+            setContextMenuIsVisible(false);
+        })
+        .catch((error) => {
+            console.error("Error deleting task detail:", error);
+        });
+};
+
+
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
         addItemSound.play()
@@ -210,7 +234,7 @@ const handleSubmit = () => {
     transition={{ duration: 0.2 }}
     style={{ transformOrigin: 'top' }} 
             >
-            <TaskList setContextMenuIsVisible={setContextMenuIsVisible} inputPopup={inputPopup} inputRef={inputRef} handleKeyDown={handleKeyDown} userID={userID} handleTaskDetailAdd={handleTaskDetailAdd} taskCompleteNotify={taskCompleteNotify} setGroupInputPopup={setGroupInputPopup} setTasksData={setTasksData} groupInputPopup={groupInputPopup} handleTaskGroupDelete={handleTaskGroupDelete} showGroupInputField={showGroupInputField} contextMenuItems_TaskGroup={contextMenuItems_TaskGroup} handleTaskDelete={handleTaskDelete} taskgroups={tasksData.taskgroups} tasks={tasksData.tasks} taskdetails={tasksData.tasksdetails} />
+            <TaskList handleTaskDetailDelete={handleTaskDetailDelete} setContextMenuIsVisible={setContextMenuIsVisible} inputPopup={inputPopup} inputRef={inputRef} handleKeyDown={handleKeyDown} userID={userID} handleTaskDetailAdd={handleTaskDetailAdd} taskCompleteNotify={taskCompleteNotify} setGroupInputPopup={setGroupInputPopup} setTasksData={setTasksData} groupInputPopup={groupInputPopup} handleTaskGroupDelete={handleTaskGroupDelete} showGroupInputField={showGroupInputField} contextMenuItems_TaskGroup={contextMenuItems_TaskGroup} handleTaskDelete={handleTaskDelete} taskgroups={tasksData.taskgroups} tasks={tasksData.tasks} taskdetails={tasksData.tasksdetails} />
             </motion.div>
             : <TaskList inputPopup={inputPopup} inputRef={inputRef} handleKeyDown={handleKeyDown} userID={userID} handleTaskDetailAdd={handleTaskDetailAdd} taskCompleteNotify={taskCompleteNotify} setGroupInputPopup={setGroupInputPopup} setTasksData={setTasksData} groupInputPopup={groupInputPopup} handleTaskGroupDelete={handleTaskGroupDelete} showGroupInputField={showGroupInputField} contextMenuItems_TaskGroup={contextMenuItems_TaskGroup} handleTaskDelete={handleTaskDelete} />
         }
