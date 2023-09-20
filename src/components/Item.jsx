@@ -75,6 +75,7 @@ function Item({ handleDetailDelete, setContextMenuIsVisible, userData, userID, h
                     className="leading-tight mb-1 md:mb-0 md:cursor-pointer font-medium flex text-secondary-navy text-lg md:text-base md:leading-relaxed mt-1 md:mt-0"
                     onClick={() => { setIsOpen(!isOpen) }}>
                     {itemName}
+                    {((itemDetails.length !== 0) && !isOpen) && ":"}
                 </motion.li>
             </ContextMenuContainer>
 
