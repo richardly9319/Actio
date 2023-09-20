@@ -14,7 +14,7 @@ function TaskSection( {setContextMenuIsVisible, userID, taskCompleteNotify, sect
     const inputRef = useRef();
 
     const addItemSound = new Audio(pulse);
-    addItemSound.volume = 0.35;
+    addItemSound.volume = 0.20;
 
   
 
