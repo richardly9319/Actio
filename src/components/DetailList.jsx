@@ -1,7 +1,7 @@
 import Detail from "./Detail"
 import { motion, AnimatePresence } from "framer-motion";
 
-function DetailList( {details} ) {
+function DetailList( {setContextMenuIsVisible, itemId, handleDetailDelete, userID, details} ) {
 
 
   return (
@@ -13,7 +13,7 @@ function DetailList( {details} ) {
     >
     <ul className="ml-3 leading-relaxed list-disc list-inside">
         {details?.map((detail, index) => {
-            return <Detail detailText={detail.detail_text} key={index}/>
+            return <Detail setContextMenuIsVisible={setContextMenuIsVisible} detailId={detail.id} itemId={itemId} handleDetailDelete={handleDetailDelete} userID={userID} detailText={detail.detail_text} key={index}/>
         })}
     </ul>
     </motion.div>

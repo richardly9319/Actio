@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import ContextMenuContainer from "./ContextMenuContainer";
 import axios from 'axios';
 
-function Item({ setContextMenuIsVisible, userData, userID, handleItemDelete, setUserData, sectionType, itemId, itemName, itemDetails }) {
+function Item({ handleDetailDelete, setContextMenuIsVisible, userData, userID, handleItemDelete, setUserData, sectionType, itemId, itemName, itemDetails }) {
     const apiUrl = import.meta.env.VITE_API_URL;
     const user_id = userID;
 
@@ -79,6 +79,21 @@ function Item({ setContextMenuIsVisible, userData, userID, handleItemDelete, set
             </ContextMenuContainer>
 
 
+            
+
+            {/* <AnimatePresence> */}
+                {isOpen &&
+                    // <div
+                        // initial={{ opacity: 0 }}
+                        // animate={{ opacity: 1 }}
+                        // // exit={{ opacity: 0 }}
+                        // transition={{ duration: 0.5 }}
+                        // >
+                        <DetailList setContextMenuIsVisible={setContextMenuIsVisible} itemId={itemId} handleDetailDelete={handleDetailDelete} userID={userID} details={itemDetails?.filter(detail => detail.section_id === itemId)} />
+                    // </div>
+                }
+            {/* </AnimatePresence> */}
+
             {inputPopup.isVisible && (
                 <motion.div
                 initial={{ opacity: 0 }} 
@@ -95,19 +110,6 @@ function Item({ setContextMenuIsVisible, userData, userID, handleItemDelete, set
               />
             </motion.div>
         )}
-
-            {/* <AnimatePresence> */}
-                {isOpen &&
-                    // <div
-                        // initial={{ opacity: 0 }}
-                        // animate={{ opacity: 1 }}
-                        // // exit={{ opacity: 0 }}
-                        // transition={{ duration: 0.5 }}
-                        // >
-                        <DetailList details={itemDetails?.filter(detail => detail.section_id === itemId)} />
-                    // </div>
-                }
-            {/* </AnimatePresence> */}
         </div>
     )
 }

@@ -55,7 +55,6 @@ function Section( {setContextMenuIsVisible, userID, userData, setUserData, secti
     
 
     const handleItemDelete = (itemId) => {
-      console.log("sectionType: ", sectionType)
       axios
         .delete(`${apiUrl}/${user_id}/${sectionType}/${itemId}`)
         .then((response) => {
@@ -72,6 +71,40 @@ function Section( {setContextMenuIsVisible, userID, userData, setUserData, secti
 
         setContextMenuIsVisible(false)
     };
+
+    const handleDetailDelete = (itemId, detailId) => {
+      console.log("itemId:", itemId);
+      console.log("detailId:", detailId);
+  
+      axios
+          .delete(`${apiUrl}/${user_id}/${sectionType}/${itemId}/${detailId}`)
+          .then((response) => {
+            
+              setUserData(prevData => {
+                  // Determine the section name for details (e.g., goalDetails if sectionType is goals)
+                  const sectionDetailName = `${sectionType.slice(0, -1)}details`;
+                  console.log("sectionDetailName", sectionDetailName)
+                  // Filter out the deleted detail
+                  const updatedDetails = prevData[sectionDetailName]?.filter(detail => detail.id !== detailId);
+  
+                  // Return the updated state
+                  return {
+                      ...prevData,
+                      [sectionDetailName]: updatedDetails
+                  };
+              });
+  
+              setContextMenuIsVisible(false);
+          })
+          .catch((error) => {
+              console.error("Error deleting detail:", error);
+          });
+  };
+  
+  
+    
+
+
 
     useEffect(() => {
       function handleClickOutside(event) {
@@ -111,7 +144,7 @@ function Section( {setContextMenuIsVisible, userID, userData, setUserData, secti
             transition={{ duration: 0.2 }}
             style={{ transformOrigin: 'top' }} 
             >
-            <ItemList setContextMenuIsVisible={setContextMenuIsVisible} userData={userData} handleSubmit={handleSubmit} setInputPopup={setInputPopup} inputRef={inputRef} inputPopup={inputPopup} userID={userID} handleItemDelete={handleItemDelete} setUserData={setUserData} sectionType={sectionType} sectionItems={sectionItems} sectionDetails={sectionDetails} />
+            <ItemList handleDetailDelete={handleDetailDelete} setContextMenuIsVisible={setContextMenuIsVisible} userData={userData} handleSubmit={handleSubmit} setInputPopup={setInputPopup} inputRef={inputRef} inputPopup={inputPopup} userID={userID} handleItemDelete={handleItemDelete} setUserData={setUserData} sectionType={sectionType} sectionItems={sectionItems} sectionDetails={sectionDetails} />
             </motion.div>
             : null
         }
