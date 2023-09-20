@@ -104,7 +104,6 @@ function TaskSection( {setContextMenuIsVisible, userID, taskCompleteNotify, sect
                 };
             });
 
-            // Optionally, you can hide the context menu if required
             setContextMenuIsVisible(false);
         })
         .catch((error) => {

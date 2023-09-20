@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion"
 function TaskList( {handleTaskDetailDelete, setContextMenuIsVisible, handleKeyDown, inputRef, inputPopup, userID, handleTaskDetailAdd, taskCompleteNotify, setGroupInputPopup, setTasksData, groupInputPopup, handleTaskGroupDelete, showGroupInputField, taskgroups, tasks, taskdetails, handleTaskDelete, contextMenuItems_TaskGroup} ) {
 
   return (
-    <ul className="ml-2">
+    <ul className="ml-0">
         
         {tasks?.filter((task) => {
           return task.taskgroup_id == null

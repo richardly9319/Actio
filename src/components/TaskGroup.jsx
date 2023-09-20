@@ -89,7 +89,7 @@ function TaskGroup({handleTaskDetailDelete,
     transition={{ duration: 0.2 }}
     style={{ transformOrigin: 'top' }} 
           >
-            <ul className="ml-4">
+            <ul className="ml-2">
               {tasks?.map((task, index) => {
                 return (
                 <Task setContextMenuIsVisible={setContextMenuIsVisible} handleTaskDetailDelete={handleTaskDetailDelete}
