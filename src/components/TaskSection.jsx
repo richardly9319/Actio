@@ -21,7 +21,7 @@ function TaskSection( {setContextMenuIsVisible, userID, taskCompleteNotify, sect
 
     const [tasksData, setTasksData] = useState([]);
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
 
     const [inputPopup, setInputPopup] = useState({ isVisible: false, label: '' });
     const [groupInputPopup, setGroupInputPopup] = useState({ isVisible: false, label: '' });

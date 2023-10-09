@@ -9,7 +9,7 @@ import ContextMenuContainer from "../ContextMenuContainer";
 
 function Section( {setContextMenuIsVisible, userID, userData, setUserData, sectionTitle, sectionItems, sectionDetails, sectionType} ) {
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
 
     const addItemSound = new Audio(addItem);
     addItemSound.volume = 0.50;
