@@ -117,7 +117,7 @@ const handleAppClick = (e) => {
     if (storedUserID) {
       setUserID(storedUserID); // Set the user's ID
     } else {
-      alert('Right-click/hold-click to open Context Menu. Left-click to expand or close. Google Login available through Sidebar in top right')
+      alert('Left-click to expand or close. Right-click/hold-click to open menu.')
     }
 
   }, []);
