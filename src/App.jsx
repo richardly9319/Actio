@@ -106,6 +106,22 @@ const handleAppClick = (e) => {
   }
 };
 
+const [showAlert, setShowAlert] = useState(false);
+
+  // Function to show the alert after a couple of seconds
+  const showAlertAfterDelay = () => {
+    setTimeout(() => {
+      setShowAlert(true);
+    }, 2000); // 2000 milliseconds (2 seconds)
+  };
+
+  useEffect(() => {
+    // Check if the user is logged in and display the alert if not
+    if (!isLoggedIn) {
+      showAlertAfterDelay();
+    }
+  }, [isLoggedIn]);
+
 
   useEffect(() => {
     const storedToken = localStorage.getItem('userToken');
@@ -116,9 +132,7 @@ const handleAppClick = (e) => {
     }
     if (storedUserID) {
       setUserID(storedUserID); // Set the user's ID
-    } else {
-      alert('Left-click to expand or close. Right-click/hold-click to open menu.')
-    }
+    } 
 
   }, []);
 
