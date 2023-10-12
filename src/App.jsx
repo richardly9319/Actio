@@ -111,7 +111,7 @@ const handleAppClick = (e) => {
   const showAlertAfterDelay = () => {
     setTimeout(() => {
       alert('Left-click to expand or close. Right-click/hold-click to open menu.')
-    }, 2000); // 2000 milliseconds (2 seconds)
+    }, 2500); // 2000 milliseconds (2 seconds)
   };
 
   useEffect(() => {
