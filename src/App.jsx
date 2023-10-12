@@ -106,12 +106,11 @@ const handleAppClick = (e) => {
   }
 };
 
-const [showAlert, setShowAlert] = useState(false);
 
   // Function to show the alert after a couple of seconds
   const showAlertAfterDelay = () => {
     setTimeout(() => {
-      setShowAlert(true);
+      alert('Left-click to expand or close. Right-click/hold-click to open menu.')
     }, 2000); // 2000 milliseconds (2 seconds)
   };
 
